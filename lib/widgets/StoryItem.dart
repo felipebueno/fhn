@@ -23,7 +23,7 @@ class StoryItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(this.story.title),
-                Text('(${this.story.url})'),
+                Text('(${this.story.host})'),
                 Text(
                     '${this.story.score} points by ${this.story.by} ${this.story.time} ago | ${this.story.kids.length} comments'),
               ],

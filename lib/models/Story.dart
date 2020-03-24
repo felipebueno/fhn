@@ -1,3 +1,5 @@
+import 'dart:core';
+
 class Story {
   final int index;
   final String by; // dhouston
@@ -36,6 +38,8 @@ class Story {
       url: json['url'],
     );
   }
+
+  String get host => Uri.parse(this.url).host;
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
