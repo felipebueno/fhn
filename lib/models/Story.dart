@@ -4,15 +4,18 @@ import 'package:timeago/timeago.dart' as timeago;
 
 class Story {
   final int index;
-  final String by; // dhouston
-  final int descendants; // 71
-  final int id; // 8863
-  final List<int> kids;
-  final int score; // 104
-  final int time; // 1175714200
+  final String by; // The username of the item's author.
+  final int
+  descendants; // In the case of stories or polls, the total comment count.
+  final int id; // The item's unique id.
+  final List<int>
+  kids; // The ids of the item's comments, in ranked display order.
+  final int score; // The story's score, or the votes for a pollopt.
+  final int time; // Creation date of the item, in Unix Time.
   final String title; // My YC app: Dropbox - Throw away your USB drive
-  final String type; // story
-  final String url; // http://www.getdropbox.com/u/2/screencast.html
+  final String
+  type; // The type of item. One of "job", "story", "comment", "poll", or "pollopt".
+  final String url; // The URL of the story.
 
   Story({
     this.index,
@@ -32,7 +35,8 @@ class Story {
           .parse(this.url)
           .host;
 
-  String get timeAgo => timeago.format(DateTime(this.time));
+  String get timeAgo =>
+      timeago.format(DateTime.fromMillisecondsSinceEpoch(this.time * 1000));
 
   factory Story.fromJson(Map<String, dynamic> json) {
     return Story(

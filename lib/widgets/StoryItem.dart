@@ -27,7 +27,7 @@ class StoryItem extends StatelessWidget {
                   Text('(${this.story.host})'),
                   Text(
                       '${this.story.score} points by ${this.story.by} ${this
-                          .story.timeAgo} ago | ${this.story.kids
+                          .story.timeAgo} | ${this.story.kids
                           .length} comments'),
                 ],
               ),
