@@ -19,18 +19,10 @@ class HNAppBar extends StatelessWidget {
             height: 32,
           ),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  'Hacker News',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  'new | past | comments | ask | show | jobs | submit',
-                  style: TextStyle(fontSize: 11),
-                ),
-              ],
+            child: Text(
+              'Hacker News',
+              style:
+              TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
           ),
         ],
