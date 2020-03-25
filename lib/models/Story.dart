@@ -33,7 +33,8 @@ class Story {
   String get host =>
       Uri
           .parse(this.url)
-          .host;
+          .host
+          .replaceFirst('www.', '');
 
   String get timeAgo =>
       timeago.format(DateTime.fromMillisecondsSinceEpoch(this.time * 1000));

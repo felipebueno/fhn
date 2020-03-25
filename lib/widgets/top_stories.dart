@@ -26,8 +26,11 @@ class TopStories extends StatelessWidget {
     );
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: stories.map((story) => StoryItem(story: story)).toList(),
+      children: stories
+          .map(
+            (story) => StoryItem(story: story),
+      )
+          .toList(),
     );
   }
 }

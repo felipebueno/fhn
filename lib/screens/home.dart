@@ -16,10 +16,7 @@ class Home extends StatelessWidget {
             SliverList(
               delegate: SliverChildListDelegate(
                 <Widget>[
-                  Container(
-                    width: double.infinity,
-                    child: TopStories(),
-                  ),
+                  TopStories(),
                   Footer(),
                 ],
               ),

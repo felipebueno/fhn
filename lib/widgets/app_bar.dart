@@ -11,7 +11,7 @@ class HNAppBar extends StatelessWidget {
     return SliverAppBar(
       backgroundColor: kHNOrange,
       title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Icon(Icons.hd),
           Expanded(
@@ -29,10 +29,6 @@ class HNAppBar extends StatelessWidget {
               ],
             ),
           ),
-          Text(
-            'login',
-            style: TextStyle(fontSize: 11),
-          )
         ],
       ),
     );
