@@ -1,5 +1,7 @@
 import 'dart:core';
 
+import 'package:timeago/timeago.dart' as timeago;
+
 class Story {
   final int index;
   final String by; // dhouston
@@ -25,6 +27,13 @@ class Story {
     this.url,
   });
 
+  String get host =>
+      Uri
+          .parse(this.url)
+          .host;
+
+  String get timeAgo => timeago.format(DateTime(this.time));
+
   factory Story.fromJson(Map<String, dynamic> json) {
     return Story(
       by: json['by'],
@@ -38,8 +47,6 @@ class Story {
       url: json['url'],
     );
   }
-
-  String get host => Uri.parse(this.url).host;
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

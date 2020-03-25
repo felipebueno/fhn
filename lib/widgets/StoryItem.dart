@@ -19,14 +19,18 @@ class StoryItem extends StatelessWidget {
               Icons.arrow_drop_up,
               size: 24,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(this.story.title),
-                Text('(${this.story.host})'),
-                Text(
-                    '${this.story.score} points by ${this.story.by} ${this.story.time} ago | ${this.story.kids.length} comments'),
-              ],
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(this.story.title),
+                  Text('(${this.story.host})'),
+                  Text(
+                      '${this.story.score} points by ${this.story.by} ${this
+                          .story.timeAgo} ago | ${this.story.kids
+                          .length} comments'),
+                ],
+              ),
             ),
           ],
         ),
