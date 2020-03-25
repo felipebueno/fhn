@@ -33,16 +33,6 @@ class Footer extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              Text('Search:'),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(),
-                      border: InputBorder.none,
-                      hintText: 'Enter a search term'),
-                ),
-              ),
             ],
           ),
         ),

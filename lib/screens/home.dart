@@ -1,15 +1,25 @@
 import 'package:fhn/constants.dart';
-import 'package:fhn/widgets/footer.dart';
+import 'package:fhn/widgets/ask_stories.dart';
+import 'package:fhn/widgets/base_tab.dart';
+import 'package:fhn/widgets/search.dart';
 import 'package:fhn/widgets/top_stories.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
+  final List<Tab> tabs = [
+    Tab(icon: Icon(Icons.new_releases), text: "Top"),
+    Tab(icon: Icon(Icons.question_answer), text: "Ask"),
+    Tab(icon: Icon(Icons.show_chart), text: "Show"),
+    Tab(icon: Icon(Icons.work), text: "Jobs"),
+    Tab(icon: Icon(Icons.search), text: "Search"),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kHNBGColor,
       body: DefaultTabController(
-        length: 5,
+        length: this.tabs.length,
         child: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
@@ -38,26 +48,21 @@ class Home extends StatelessWidget {
                     indicatorColor: kHNOrange,
                     labelColor: kHNOrange,
                     unselectedLabelColor: kHNGrey,
-                    tabs: [
-                      Tab(icon: Icon(Icons.new_releases), text: "Top"),
-                      Tab(icon: Icon(Icons.question_answer), text: "Ask"),
-                      Tab(icon: Icon(Icons.show_chart), text: "Show"),
-                      Tab(icon: Icon(Icons.work), text: "Jobs"),
-                      Tab(icon: Icon(Icons.search), text: "Search"),
-                    ],
+                    tabs: this.tabs,
                   ),
                 ),
                 pinned: true,
               ),
             ];
           },
-          body: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                TopStories(),
-                Footer(),
-              ],
-            ),
+          body: TabBarView(
+            children: <Widget>[
+              BaseTab(body: TopStories()),
+              BaseTab(body: AskStories()),
+              BaseTab(body: Container(child: Icon(Icons.show_chart))),
+              BaseTab(body: Container(child: Icon(Icons.work))),
+              BaseTab(body: Search()),
+            ],
           ),
         ),
       ),

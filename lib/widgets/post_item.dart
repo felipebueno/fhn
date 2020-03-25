@@ -35,18 +35,19 @@ class PostItem extends StatelessWidget {
                         style: TextStyle(color: Colors.black, fontSize: 16),
                       ),
                       TextSpan(
-                        text: '(',
+                        text: this.story.url == null ? '' : '(',
                         style: TextStyle(color: kHNGrey),
                       ),
                       TextSpan(
-                        text: '${this.story.host}',
+                        text:
+                        this.story.url == null ? '' : '${this.story.host}',
                         style: TextStyle(
                           color: kHNGrey,
                           decoration: TextDecoration.underline,
                         ),
                       ),
                       TextSpan(
-                        text: ')',
+                        text: this.story.url == null ? '' : ')',
                         style: TextStyle(color: kHNGrey),
                       ),
                     ],

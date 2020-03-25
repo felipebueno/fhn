@@ -15,6 +15,7 @@ class Post {
   final String title; // My YC app: Dropbox - Throw away your USB drive
   final String type; // One of "job", "story", "comment", "poll", or "pollopt".
   final String url; // The URL of the story.
+  final String text; // The comment, story or poll text. HTML.
 
   Post({
     this.index,
@@ -27,6 +28,7 @@ class Post {
     this.title,
     this.type,
     this.url,
+    this.text,
   });
 
   String get host =>
@@ -49,6 +51,7 @@ class Post {
       title: json['title'],
       type: json['type'],
       url: json['url'],
+      text: json['text'],
     );
   }
 
@@ -62,6 +65,7 @@ class Post {
     data['title'] = this.title;
     data['type'] = this.type;
     data['url'] = this.url;
+    data['text'] = this.text;
     if (this.kids != null) {
       data['kids'] = this.kids;
     }
