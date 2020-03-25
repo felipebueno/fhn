@@ -29,7 +29,7 @@ class Footer extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Guidelines | FAQ | Support | API | Security | Lists | Bookmarklet | Legal | Apply to YC | Contact',
+                  'Guidelines | FAQ | Lists | Bookmarklet | Legal | Apply to YC | Contact',
                   textAlign: TextAlign.center,
                 ),
               ),

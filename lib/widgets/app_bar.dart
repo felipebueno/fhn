@@ -13,7 +13,11 @@ class HNAppBar extends StatelessWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Icon(Icons.hd),
+          Image.asset(
+            'assets/icon/icon.jpg',
+            width: 32,
+            height: 32,
+          ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
