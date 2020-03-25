@@ -1,5 +1,5 @@
-import 'package:fhn/models/Story.dart';
-import 'package:fhn/widgets/StoryItem.dart';
+import 'package:fhn/models/post.dart';
+import 'package:fhn/widgets/post_item.dart';
 import 'package:flutter/material.dart';
 
 class TopStories extends StatelessWidget {
@@ -9,9 +9,10 @@ class TopStories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Story> stories = List<Story>.generate(
+    final List<Post> stories = List<Post>.generate(
       30,
-      (index) => Story(
+          (index) =>
+          Post(
         index: index + 1,
         by: 'dhouston',
         descendants: 71,
@@ -28,7 +29,7 @@ class TopStories extends StatelessWidget {
     return Column(
       children: stories
           .map(
-            (story) => StoryItem(story: story),
+            (story) => PostItem(story: story),
       )
           .toList(),
     );

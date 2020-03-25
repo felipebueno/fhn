@@ -1,11 +1,11 @@
 import 'package:fhn/constants.dart';
-import 'package:fhn/models/Story.dart';
+import 'package:fhn/models/post.dart';
 import 'package:flutter/material.dart';
 
-class StoryItem extends StatelessWidget {
-  final Story story;
+class PostItem extends StatelessWidget {
+  final Post story;
 
-  const StoryItem({Key key, this.story}) : super(key: key);
+  const PostItem({Key key, this.story}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

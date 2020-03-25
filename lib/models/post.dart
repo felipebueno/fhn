@@ -2,7 +2,7 @@ import 'dart:core';
 
 import 'package:timeago/timeago.dart' as timeago;
 
-class Story {
+class Post {
   final int index;
   final String by; // The username of the item's author.
   final int
@@ -13,11 +13,10 @@ class Story {
   final int score; // The story's score, or the votes for a pollopt.
   final int time; // Creation date of the item, in Unix Time.
   final String title; // My YC app: Dropbox - Throw away your USB drive
-  final String
-  type; // The type of item. One of "job", "story", "comment", "poll", or "pollopt".
+  final String type; // One of "job", "story", "comment", "poll", or "pollopt".
   final String url; // The URL of the story.
 
-  Story({
+  Post({
     this.index,
     this.by,
     this.descendants,
@@ -39,8 +38,8 @@ class Story {
   String get timeAgo =>
       timeago.format(DateTime.fromMillisecondsSinceEpoch(this.time * 1000));
 
-  factory Story.fromJson(Map<String, dynamic> json) {
-    return Story(
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(
       by: json['by'],
       descendants: json['descendants'],
       id: json['id'],
