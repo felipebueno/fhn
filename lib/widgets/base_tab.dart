@@ -1,7 +1,7 @@
 import 'package:fhn/widgets/footer.dart';
 import 'package:flutter/material.dart';
 
-class BaseTab extends StatelessWidget {
+class BaseTab extends StatefulWidget {
   final Widget body;
 
   const BaseTab({
@@ -10,11 +10,19 @@ class BaseTab extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _BaseTabState createState() => _BaseTabState();
+}
+
+class _BaseTabState extends State<BaseTab> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          this.body,
+          this.widget.body,
           Footer(),
         ],
       ),

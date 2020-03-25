@@ -10,33 +10,38 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Text('More'),
-        Divider(
-          color: kHNOrange,
-          height: 2.0,
-          thickness: 2.0,
-        ),
-        Container(
-          width: double.infinity,
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('Applications are open for YC Summer 2020'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Guidelines | FAQ | Lists | Bookmarklet | Legal | Apply to YC | Contact',
-                  textAlign: TextAlign.center,
+    return Container(
+      color: kHNOrange,
+      width: double.infinity,
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Text(
+                  'Guidelines',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-            ],
+                Text('FAQ',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    )),
+                Text('Contact',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    )),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
