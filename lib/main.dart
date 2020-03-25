@@ -1,4 +1,5 @@
 import 'package:fhn/constants.dart';
+import 'package:fhn/router.dart';
 import 'package:fhn/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -23,6 +24,8 @@ class App extends StatelessWidget {
         primarySwatch: Colors.orange,
         backgroundColor: Color(0xFFF6F6EF),
       ),
+      initialRoute: Home.id,
+      routes: Router.routes,
       home: Home(),
     );
   }

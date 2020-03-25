@@ -7,6 +7,8 @@ import 'package:fhn/widgets/top_posts.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
+  static const String id = 'home';
+
   final List<Tab> tabs = [
     Tab(icon: Icon(Icons.new_releases), text: "Top"),
     Tab(icon: Icon(Icons.question_answer), text: "Ask"),
