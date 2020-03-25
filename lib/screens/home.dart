@@ -1,8 +1,8 @@
 import 'package:fhn/constants.dart';
-import 'package:fhn/widgets/ask_stories.dart';
+import 'package:fhn/widgets/ask_posts.dart';
 import 'package:fhn/widgets/base_tab.dart';
 import 'package:fhn/widgets/search.dart';
-import 'package:fhn/widgets/top_stories.dart';
+import 'package:fhn/widgets/top_posts.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -57,8 +57,8 @@ class Home extends StatelessWidget {
           },
           body: TabBarView(
             children: <Widget>[
-              BaseTab(body: TopStories()),
-              BaseTab(body: AskStories()),
+              BaseTab(body: TopPosts()),
+              BaseTab(body: AskPosts()),
               BaseTab(body: Container(child: Icon(Icons.show_chart))),
               BaseTab(body: Container(child: Icon(Icons.work))),
               BaseTab(body: Search()),

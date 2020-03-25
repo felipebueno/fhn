@@ -2,14 +2,14 @@ import 'package:fhn/models/post.dart';
 import 'package:fhn/widgets/post_item.dart';
 import 'package:flutter/material.dart';
 
-class TopStories extends StatelessWidget {
-  const TopStories({
+class TopPosts extends StatelessWidget {
+  const TopPosts({
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final List<Post> stories = List<Post>.generate(
+    final List<Post> posts = List<Post>.generate(
       30,
           (index) =>
           Post(
@@ -27,9 +27,9 @@ class TopStories extends StatelessWidget {
     );
 
     return Column(
-      children: stories
+      children: posts
           .map(
-            (story) => PostItem(story: story),
+            (post) => PostItem(post: post),
       )
           .toList(),
     );

@@ -3,9 +3,9 @@ import 'package:fhn/models/post.dart';
 import 'package:flutter/material.dart';
 
 class PostItem extends StatelessWidget {
-  final Post story;
+  final Post post;
 
-  const PostItem({Key key, this.story}) : super(key: key);
+  const PostItem({Key key, this.post}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class PostItem extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: Text(
-                '${this.story.index}.',
+                '${this.post.index}.',
                 textAlign: TextAlign.end,
               ),
             ),
@@ -31,23 +31,23 @@ class PostItem extends StatelessWidget {
                   text: TextSpan(
                     children: <TextSpan>[
                       TextSpan(
-                        text: '${this.story.title} ',
+                        text: '${this.post.title} ',
                         style: TextStyle(color: Colors.black, fontSize: 16),
                       ),
                       TextSpan(
-                        text: this.story.url == null ? '' : '(',
+                        text: this.post.url == null ? '' : '(',
                         style: TextStyle(color: kHNGrey),
                       ),
                       TextSpan(
                         text:
-                        this.story.url == null ? '' : '${this.story.host}',
+                        this.post.url == null ? '' : '${this.post.host}',
                         style: TextStyle(
                           color: kHNGrey,
                           decoration: TextDecoration.underline,
                         ),
                       ),
                       TextSpan(
-                        text: this.story.url == null ? '' : ')',
+                        text: this.post.url == null ? '' : ')',
                         style: TextStyle(color: kHNGrey),
                       ),
                     ],
@@ -58,22 +58,22 @@ class PostItem extends StatelessWidget {
                   text: TextSpan(
                     children: <TextSpan>[
                       TextSpan(
-                        text: '${this.story.score} points by ',
+                        text: '${this.post.score} points by ',
                         style: TextStyle(color: kHNGrey),
                       ),
                       TextSpan(
-                        text: '${this.story.by}',
+                        text: '${this.post.by}',
                         style: TextStyle(
                           color: kHNGrey,
                           decoration: TextDecoration.underline,
                         ),
                       ),
                       TextSpan(
-                        text: ' ${this.story.timeAgo} | ',
+                        text: ' ${this.post.timeAgo} | ',
                         style: TextStyle(color: kHNGrey),
                       ),
                       TextSpan(
-                        text: '${this.story.kids.length} comments',
+                        text: '${this.post.kids.length} comments',
                         style: TextStyle(
                           color: kHNGrey,
                           decoration: TextDecoration.underline,
