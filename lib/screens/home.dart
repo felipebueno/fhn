@@ -2,7 +2,6 @@ import 'package:fhn/constants.dart';
 import 'package:fhn/widgets/ask_posts.dart';
 import 'package:fhn/widgets/base_tab.dart';
 import 'package:fhn/widgets/job_posts.dart';
-import 'package:fhn/widgets/search.dart';
 import 'package:fhn/widgets/show_posts.dart';
 import 'package:fhn/widgets/top_posts.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +12,6 @@ class Home extends StatelessWidget {
     Tab(icon: Icon(Icons.question_answer), text: "Ask"),
     Tab(icon: Icon(Icons.show_chart), text: "Show"),
     Tab(icon: Icon(Icons.work), text: "Jobs"),
-    Tab(icon: Icon(Icons.search), text: "Search"),
   ];
 
   @override
@@ -63,7 +61,6 @@ class Home extends StatelessWidget {
               BaseTab(body: AskPosts()),
               BaseTab(body: ShowPosts()),
               BaseTab(body: JobPosts()),
-              BaseTab(body: Search()),
             ],
           ),
         ),
