@@ -56,11 +56,15 @@ class PostItem extends StatelessWidget {
                 RichText(
                   text: TextSpan(
                     children: <TextSpan>[
-                      TextSpan(
+                      this.post.type == 'job'
+                          ? TextSpan()
+                          : TextSpan(
                         text: '${this.post.score} points by ',
                         style: TextStyle(color: kHNGrey),
                       ),
-                      TextSpan(
+                      this.post.type == 'job'
+                          ? TextSpan()
+                          : TextSpan(
                         text: '${this.post.by}',
                         style: TextStyle(
                           color: kHNGrey,
@@ -71,7 +75,9 @@ class PostItem extends StatelessWidget {
                         text: ' ${this.post.timeAgo}',
                         style: TextStyle(color: kHNGrey),
                       ),
-                      TextSpan(
+                      this.post.type == 'job'
+                          ? TextSpan()
+                          : TextSpan(
                         text: this.post.kids == null
                             ? ''
                             : ' | ${this.post.kids.length} comments',
