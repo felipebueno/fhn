@@ -39,8 +39,7 @@ class PostItem extends StatelessWidget {
                         style: TextStyle(color: kHNGrey),
                       ),
                       TextSpan(
-                        text:
-                        this.post.url == null ? '' : '${this.post.host}',
+                        text: this.post.url == null ? '' : '${this.post.host}',
                         style: TextStyle(
                           color: kHNGrey,
                           decoration: TextDecoration.underline,
@@ -69,11 +68,13 @@ class PostItem extends StatelessWidget {
                         ),
                       ),
                       TextSpan(
-                        text: ' ${this.post.timeAgo} | ',
+                        text: ' ${this.post.timeAgo}',
                         style: TextStyle(color: kHNGrey),
                       ),
                       TextSpan(
-                        text: '${this.post.kids.length} comments',
+                        text: this.post.kids == null
+                            ? ''
+                            : ' | ${this.post.kids.length} comments',
                         style: TextStyle(
                           color: kHNGrey,
                           decoration: TextDecoration.underline,

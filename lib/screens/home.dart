@@ -1,6 +1,7 @@
 import 'package:fhn/constants.dart';
 import 'package:fhn/widgets/ask_posts.dart';
 import 'package:fhn/widgets/base_tab.dart';
+import 'package:fhn/widgets/job_posts.dart';
 import 'package:fhn/widgets/search.dart';
 import 'package:fhn/widgets/show_posts.dart';
 import 'package:fhn/widgets/top_posts.dart';
@@ -61,7 +62,7 @@ class Home extends StatelessWidget {
               BaseTab(body: TopPosts()),
               BaseTab(body: AskPosts()),
               BaseTab(body: ShowPosts()),
-              BaseTab(body: Container(child: Icon(Icons.work))),
+              BaseTab(body: JobPosts()),
               BaseTab(body: Search()),
             ],
           ),
