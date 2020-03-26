@@ -1,4 +1,5 @@
 import 'package:fhn/constants.dart';
+import 'package:fhn/screens/home.dart';
 import 'package:flutter/material.dart';
 
 class GenericScreenScaffold extends StatelessWidget {
@@ -17,8 +18,13 @@ class GenericScreenScaffold extends StatelessWidget {
       backgroundColor: kHNBGColor,
       appBar: AppBar(
         title: Text(this.title),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () => Navigator.of(context).pushNamed(Home.id)),
+        ],
       ),
-      body: this.body,
+      body: SingleChildScrollView(child: this.body),
     );
   }
 }

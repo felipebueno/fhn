@@ -16,6 +16,8 @@ class Post {
   final String type; // One of "job", "story", "comment", "poll", or "pollopt".
   final String url; // The URL of the story.
   final String text; // The comment, story or poll text. HTML.
+  final List<Post> comments; // This property is temporary
+  final int parent;
 
   Post({
     this.index,
@@ -29,6 +31,8 @@ class Post {
     this.type,
     this.url,
     this.text,
+    this.comments,
+    this.parent,
   });
 
   String get host =>
@@ -52,6 +56,7 @@ class Post {
       type: json['type'],
       url: json['url'],
       text: json['text'],
+      parent: json['parent'],
     );
   }
 
@@ -66,6 +71,7 @@ class Post {
     data['type'] = this.type;
     data['url'] = this.url;
     data['text'] = this.text;
+    data['parent'] = this.parent;
     if (this.kids != null) {
       data['kids'] = this.kids;
     }

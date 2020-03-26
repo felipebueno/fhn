@@ -29,7 +29,7 @@ class AskPosts extends StatelessWidget {
     return Column(
       children: posts
           .map(
-            (post) => PostItem(post: post),
+            (post) => PostItem(post),
           )
           .toList(),
     );
