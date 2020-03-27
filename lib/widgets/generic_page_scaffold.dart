@@ -1,12 +1,12 @@
 import 'package:fhn/constants.dart';
-import 'package:fhn/screens/home.dart';
+import 'package:fhn/pages/home.dart';
 import 'package:flutter/material.dart';
 
-class GenericScreenScaffold extends StatelessWidget {
+class GenericPageScaffold extends StatelessWidget {
   final String title;
   final Widget body;
 
-  const GenericScreenScaffold({
+  const GenericPageScaffold({
     Key key,
     this.title,
     this.body,

@@ -1,6 +1,6 @@
 import 'package:fhn/constants.dart';
-import 'package:fhn/models/post.dart';
-import 'package:fhn/screens/post_comments.dart';
+import 'package:fhn/data/models/post.dart';
+import 'package:fhn/pages/post_comments.dart';
 import 'package:flutter/material.dart';
 
 class CommentItem extends StatelessWidget {

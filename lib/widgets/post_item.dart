@@ -1,16 +1,16 @@
 import 'package:fhn/constants.dart';
-import 'package:fhn/models/post.dart';
-import 'package:fhn/screens/post_comments.dart';
+import 'package:fhn/data/models/post.dart';
+import 'package:fhn/pages/post_comments.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PostItem extends StatelessWidget {
   final Post post;
-  final bool isCommentsScreen;
+  final bool isCommentsPage;
 
   const PostItem(this.post, {
     Key key,
-    this.isCommentsScreen = false,
+    this.isCommentsPage = false,
   }) : super(key: key);
 
   _launchURL(url) async {
@@ -24,7 +24,7 @@ class PostItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: this.isCommentsScreen || this.post.type == 'job'
+      onTap: this.isCommentsPage || this.post.type == 'job'
           ? () {
         if (this.post.url == null) return;
 
@@ -40,7 +40,7 @@ class PostItem extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: <Widget>[
-            this.isCommentsScreen
+            this.isCommentsPage
                 ? Container()
                 : Container(
               width: 32.0,

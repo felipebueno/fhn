@@ -1,5 +1,5 @@
-import 'package:fhn/screens/home.dart';
-import 'package:fhn/screens/post_comments.dart';
+import 'package:fhn/pages/home.dart';
+import 'package:fhn/pages/post_comments.dart';
 import 'package:flutter/material.dart';
 
 class Router {

@@ -1,6 +1,6 @@
 import 'package:fhn/constants.dart';
+import 'package:fhn/pages/home.dart';
 import 'package:fhn/router.dart';
-import 'package:fhn/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';

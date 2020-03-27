@@ -1,4 +1,4 @@
-import 'package:fhn/models/post.dart';
+import 'package:fhn/data/models/post.dart';
 import 'package:fhn/widgets/post_item.dart';
 import 'package:flutter/material.dart';
 
