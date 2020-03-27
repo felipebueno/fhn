@@ -19,6 +19,8 @@ class _BaseTabState extends State<BaseTab> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[

@@ -29,39 +29,35 @@ class CommentItem extends StatelessWidget {
           top: 8.0,
           bottom: 8.0,
         ),
-        child: Container(
-          child: Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  '${this.post.text} ',
-                  style: TextStyle(color: Colors.black, fontSize: 16),
-                ),
-                SizedBox(height: 8.0),
-                RichText(
-                  text: TextSpan(
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: '${this.post.by}',
-                        style: TextStyle(color: kHNGrey),
-                      ),
-                      TextSpan(
-                        text: ' ${this.post.timeAgo}',
-                        style: TextStyle(color: kHNGrey),
-                      ),
-                      TextSpan(
-                        text: this.post.kids == null
-                            ? ''
-                            : ' | ${this.post.kids.length} comments',
-                        style: TextStyle(color: kHNGrey),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              '${this.post.text} ',
+              style: TextStyle(color: Colors.black, fontSize: 16),
             ),
-          ),
+            SizedBox(height: 8.0),
+            RichText(
+              text: TextSpan(
+                children: <TextSpan>[
+                  TextSpan(
+                    text: '${this.post.by}',
+                    style: TextStyle(color: kHNGrey),
+                  ),
+                  TextSpan(
+                    text: ' ${this.post.timeAgo}',
+                    style: TextStyle(color: kHNGrey),
+                  ),
+                  TextSpan(
+                    text: this.post.kids == null
+                        ? ''
+                        : ' | ${this.post.kids.length} comments',
+                    style: TextStyle(color: kHNGrey),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
