@@ -8,3 +8,28 @@ class HomeInitial extends HomeState {
   @override
   List<Object> get props => [];
 }
+
+class HomeLoading extends HomeState {
+  const HomeLoading();
+
+  @override
+  List<Object> get props => [];
+}
+
+class HomeLoaded extends HomeState {
+  final List<Post> posts;
+
+  const HomeLoaded(this.posts);
+
+  @override
+  List<Object> get props => [posts];
+}
+
+class HomeError extends HomeState {
+  final String message;
+
+  const HomeError(this.message);
+
+  @override
+  List<Object> get props => [message];
+}

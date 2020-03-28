@@ -1,6 +1,10 @@
+import 'package:fhn/bloc/home/home_bloc.dart';
 import 'package:fhn/data/models/post.dart';
+import 'package:fhn/data/repository.dart';
+import 'package:fhn/widgets/base_bloc_consumer.dart';
 import 'package:fhn/widgets/post_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TopPosts extends StatelessWidget {
   const TopPosts({
@@ -9,68 +13,47 @@ class TopPosts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Post> posts = List<Post>.generate(
-      30,
-          (index) =>
-          Post(
-        index: index + 1,
-        by: 'dhouston',
-        descendants: 71,
-        id: 8863,
-            kids: [
-              9224,
-              8917,
-              8876,
-              9224,
-              8917,
-              8876,
-              9224,
-              8917,
-              8876,
-              9224,
-            ],
-        score: 104,
-        time: 1175714200,
-        title: 'My YC app: Dropbox - Throw away your USB drive',
-        type: 'story',
-        url: 'http://www.getdropbox.com/u/2/screencast.html',
-            comments: List<Post>.generate(
-              10,
-                  (index) =>
-                  Post(
-                    by: "norvig",
-                    id: 2921983,
-                    kids: [2922709, 2922573, 2922140, 2922141],
-                    parent: 2921506,
-                    text:
-                    "Aw shucks, guys ... you make me blush with your compliments.<p>Tell you what, Ill make a deal: I'll keep writing if you keep reading. K?",
-                    time: 1314211127,
-                    type: "comment",
-                    comments: List<Post>.generate(
-                      4,
-                          (index) =>
-                          Post(
-                            by: "norvig",
-                            id: 2921983,
-                            kids: [2922709, 2922573, 2922140, 2922141],
-                            parent: 2921506,
-                            text:
-                            "Aw shucks, guys ... you make me blush with your compliments.<p>Tell you what, Ill make a deal: I'll keep writing if you keep reading. K?",
-                            time: 1314211127,
-                            type: "comment",
-                          ),
-                    ),
-                  ),
+    return BaseBlocConsumer<HomeBloc, HomeState>(
+      onReady: () =>
+          BlocProvider.of<HomeBloc>(context).add(GetPosts(PostType.top)),
+      listener: (context, state) {
+        if (state is HomeError) {
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.message),
             ),
-      ),
-    );
-
-    return Column(
-      children: posts
-          .map(
-            (post) => PostItem(post),
-      )
-          .toList(),
+          );
+        }
+      },
+      builder: (context, state) {
+        if (state is HomeInitial) {
+          return _buildInitial(context);
+        } else if (state is HomeLoading) {
+          return _buildLoading();
+        } else if (state is HomeLoaded) {
+          return _buildLoaded(context, state.posts);
+        } else if (state is HomeError) {
+          return _buildInitial(context);
+        }
+        return Container();
+      },
     );
   }
+
+  Widget _buildInitial(context) {
+    return Center(child: Text('Preparing to load posts'));
+  }
+
+  Widget _buildLoading() => CircularProgressIndicator();
+
+  Widget _buildLoaded(BuildContext context, List<Post> posts) =>
+      posts.length == 0
+          ? Center(child: Text('No posts found :('))
+          : Column(
+        children: posts
+            .map(
+              (post) => PostItem(post),
+        )
+            .toList(),
+      );
 }

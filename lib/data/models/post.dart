@@ -1,8 +1,9 @@
 import 'dart:core';
 
+import 'package:equatable/equatable.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-class Post {
+class Post extends Equatable {
   final int index;
   final String by; // The username of the item's author.
   final int
@@ -78,4 +79,22 @@ class Post {
 
     return data;
   }
+
+  @override
+  List<Object> get props =>
+      [
+        this.index,
+        this.by,
+        this.descendants,
+        this.id,
+        this.kids,
+        this.score,
+        this.time,
+        this.title,
+        this.type,
+        this.url,
+        this.text,
+        this.comments,
+        this.parent,
+      ];
 }

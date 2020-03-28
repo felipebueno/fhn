@@ -1,10 +1,13 @@
+import 'package:fhn/bloc/home/home_bloc.dart';
 import 'package:fhn/constants.dart';
+import 'package:fhn/data/repository.dart';
 import 'package:fhn/widgets/ask_posts.dart';
 import 'package:fhn/widgets/base_tab.dart';
 import 'package:fhn/widgets/job_posts.dart';
 import 'package:fhn/widgets/show_posts.dart';
 import 'package:fhn/widgets/top_posts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Home extends StatelessWidget {
   static const String id = 'home';
@@ -14,6 +17,13 @@ class Home extends StatelessWidget {
     Tab(icon: Icon(Icons.question_answer), text: "Ask"),
     Tab(icon: Icon(Icons.show_chart), text: "Show"),
     Tab(icon: Icon(Icons.work), text: "Jobs"),
+  ];
+
+  final List<Widget> tabViews = [
+    BaseTab(body: TopPosts()),
+    BaseTab(body: AskPosts()),
+    BaseTab(body: ShowPosts()),
+    BaseTab(body: JobPosts()),
   ];
 
   @override
@@ -57,13 +67,11 @@ class Home extends StatelessWidget {
               ),
             ];
           },
-          body: TabBarView(
-            children: <Widget>[
-              BaseTab(body: TopPosts()),
-              BaseTab(body: AskPosts()),
-              BaseTab(body: ShowPosts()),
-              BaseTab(body: JobPosts()),
-            ],
+          body: BlocProvider(
+            create: (context) => HomeBloc(FakePostRepository()),
+            child: TabBarView(
+              children: tabViews,
+            ),
           ),
         ),
       ),
