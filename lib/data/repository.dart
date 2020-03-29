@@ -41,6 +41,11 @@ class FakePostRepository implements PostRepository {
 
             break;
 
+          case PostType.show:
+            posts = _buildShowPostList();
+
+            break;
+
           default:
             break;
         }
@@ -122,6 +127,25 @@ class FakePostRepository implements PostRepository {
             text:
             'Please lead with the location of the position and include the keywords INTERN, REMOTE, or VISA if the corresponding sort of candidate is welcome. Feel free to post any job that may interest HN readers from executive assistant to machine learning expert to CTO.<p>Please do not post recruiting firms or job boards.',
             type: 'story',
+          ),
+    );
+  }
+
+  List<Post> _buildShowPostList() {
+    return List<Post>.generate(
+      30,
+          (index) =>
+          Post(
+            index: index + 1,
+            by: 'aclarembeau',
+            descendants: 2,
+            id: 22662135,
+            kids: [22662614],
+            score: 11,
+            time: 1584952403,
+            title: 'Show HN: Fiwit – The single tool to manage your internal IT',
+            type: 'story',
+            url: 'https://www.fiwit.io',
           ),
     );
   }

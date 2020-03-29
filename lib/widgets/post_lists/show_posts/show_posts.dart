@@ -1,6 +1,9 @@
-import 'package:fhn/data/models/post.dart';
-import 'package:fhn/widgets/post_item.dart';
+import 'package:fhn/data/repository.dart';
+import 'package:fhn/widgets/base_bloc_consumer.dart';
+import 'package:fhn/widgets/post_lists/show_posts/show_posts_bloc.dart';
+import 'package:fhn/widgets/post_lists/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ShowPosts extends StatelessWidget {
   const ShowPosts({
@@ -9,28 +12,26 @@ class ShowPosts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Post> posts = List<Post>.generate(
-      30,
-      (index) => Post(
-        index: index + 1,
-        by: 'aclarembeau',
-        descendants: 2,
-        id: 22662135,
-        kids: [22662614],
-        score: 11,
-        time: 1584952403,
-        title: 'Show HN: Fiwit – The single tool to manage your internal IT',
-        type: 'story',
-        url: 'https://www.fiwit.io',
-      ),
-    );
-
-    return Column(
-      children: posts
-          .map(
-            (post) => PostItem(post),
-          )
-          .toList(),
+    return BaseBlocConsumer<ShowPostsBloc, ShowPostsState>(
+      onReady: () =>
+          BlocProvider.of<ShowPostsBloc>(context).add(GetPosts(PostType.show)),
+      listener: (context, state) {
+        if (state is ShowPostsError) {
+          PostListUtils.showError(context, state);
+        }
+      },
+      builder: (context, state) {
+        if (state is ShowPostsInitial) {
+          return PostListUtils.buildInitialState(context);
+        } else if (state is ShowPostsLoading) {
+          return PostListUtils.buildLoadingState();
+        } else if (state is ShowPostsLoaded) {
+          return PostListUtils.buildLoadedState(context, state.posts);
+        } else if (state is ShowPostsError) {
+          return PostListUtils.buildInitialState(context);
+        }
+        return Container();
+      },
     );
   }
 }
