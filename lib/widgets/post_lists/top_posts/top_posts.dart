@@ -1,4 +1,4 @@
-import 'package:fhn/data/posts_repository.dart';
+import 'package:fhn/data/post_repository.dart';
 import 'package:fhn/widgets/base_bloc_consumer.dart';
 import 'package:fhn/widgets/post_lists/top_posts/top_posts_bloc.dart';
 import 'package:fhn/widgets/post_lists/utils.dart';

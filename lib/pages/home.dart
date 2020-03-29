@@ -1,5 +1,5 @@
 import 'package:fhn/constants.dart';
-import 'package:fhn/data/posts_repository.dart';
+import 'package:fhn/data/post_repository.dart';
 import 'package:fhn/widgets/base_tab.dart';
 import 'package:fhn/widgets/post_lists/ask_posts/ask_posts.dart';
 import 'package:fhn/widgets/post_lists/ask_posts/ask_posts_bloc.dart';
