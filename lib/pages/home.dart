@@ -1,11 +1,11 @@
-import 'package:fhn/bloc/home/home_bloc.dart';
 import 'package:fhn/constants.dart';
 import 'package:fhn/data/repository.dart';
-import 'package:fhn/widgets/ask_posts.dart';
 import 'package:fhn/widgets/base_tab.dart';
-import 'package:fhn/widgets/job_posts.dart';
-import 'package:fhn/widgets/show_posts.dart';
-import 'package:fhn/widgets/top_posts.dart';
+import 'package:fhn/widgets/post_lists/ask_posts/ask_posts.dart';
+import 'package:fhn/widgets/post_lists/job_posts/job_posts.dart';
+import 'package:fhn/widgets/post_lists/show_posts/show_posts.dart';
+import 'package:fhn/widgets/post_lists/top_posts/top_posts.dart';
+import 'package:fhn/widgets/post_lists/top_posts/top_posts_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -67,8 +67,12 @@ class Home extends StatelessWidget {
               ),
             ];
           },
-          body: BlocProvider(
-            create: (context) => HomeBloc(FakePostRepository()),
+          body: MultiBlocProvider(
+            providers: [
+              BlocProvider<TopPostsBloc>(
+                create: (context) => TopPostsBloc(FakePostRepository()),
+              ),
+            ],
             child: TabBarView(
               children: tabViews,
             ),

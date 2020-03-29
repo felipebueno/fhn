@@ -5,26 +5,27 @@ import 'package:equatable/equatable.dart';
 import 'package:fhn/data/models/post.dart';
 import 'package:fhn/data/repository.dart';
 
-part 'home_event.dart';
-part 'home_state.dart';
+part 'top_posts_event.dart';
 
-class HomeBloc extends Bloc<HomeEvent, HomeState> {
+part 'top_posts_state.dart';
+
+class TopPostsBloc extends Bloc<TopPostsEvent, TopPostsState> {
   final PostRepository postRepository;
 
-  HomeBloc(this.postRepository);
+  TopPostsBloc(this.postRepository);
 
   @override
-  HomeState get initialState => HomeInitial();
+  TopPostsState get initialState => TopPostsInitial();
 
   @override
-  Stream<HomeState> mapEventToState(HomeEvent event,) async* {
-    yield HomeLoading();
+  Stream<TopPostsState> mapEventToState(TopPostsEvent event,) async* {
+    yield TopPostsLoading();
     if (event is GetPosts) {
       try {
         final posts = await postRepository.fetchPosts(event.postType);
-        yield HomeLoaded(posts);
+        yield TopPostsLoaded(posts);
       } on NetworkError {
-        yield HomeError(
+        yield TopPostsError(
             "Couldn't fetch posts. Make sure your device is connected to the internet.");
       }
     }
