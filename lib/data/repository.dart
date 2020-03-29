@@ -46,6 +46,11 @@ class FakePostRepository implements PostRepository {
 
             break;
 
+          case PostType.job:
+            posts = _buildJobPostList();
+
+            break;
+
           default:
             break;
         }
@@ -146,6 +151,24 @@ class FakePostRepository implements PostRepository {
             title: 'Show HN: Fiwit – The single tool to manage your internal IT',
             type: 'story',
             url: 'https://www.fiwit.io',
+          ),
+    );
+  }
+
+  List<Post> _buildJobPostList() {
+    return List<Post>.generate(
+      30,
+          (index) =>
+          Post(
+            index: index + 1,
+            by: 'mcarvin',
+            id: 22366248,
+            score: 1,
+            time: 1582125949,
+            title:
+            'SmartAsset (YC S12) Is Hiring a Senior Software Engineer in NYC',
+            type: 'job',
+            url: 'https://smartasset.com/careers/?gh_jid=4594630002',
           ),
     );
   }

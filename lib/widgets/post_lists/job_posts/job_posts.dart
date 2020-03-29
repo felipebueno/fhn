@@ -1,6 +1,9 @@
-import 'package:fhn/data/models/post.dart';
-import 'package:fhn/widgets/post_item.dart';
+import 'package:fhn/data/repository.dart';
+import 'package:fhn/widgets/base_bloc_consumer.dart';
+import 'package:fhn/widgets/post_lists/job_posts/job_posts_bloc.dart';
+import 'package:fhn/widgets/post_lists/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class JobPosts extends StatelessWidget {
   const JobPosts({
@@ -9,27 +12,26 @@ class JobPosts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Post> posts = List<Post>.generate(
-      30,
-      (index) => Post(
-        index: index + 1,
-        by: 'mcarvin',
-        id: 22366248,
-        score: 1,
-        time: 1582125949,
-        title:
-            'SmartAsset (YC S12) Is Hiring a Senior Software Engineer in NYC',
-        type: 'job',
-        url: 'https://smartasset.com/careers/?gh_jid=4594630002',
-      ),
-    );
-
-    return Column(
-      children: posts
-          .map(
-            (post) => PostItem(post),
-          )
-          .toList(),
+    return BaseBlocConsumer<JobPostsBloc, JobPostsState>(
+      onReady: () =>
+          BlocProvider.of<JobPostsBloc>(context).add(GetPosts(PostType.job)),
+      listener: (context, state) {
+        if (state is JobPostsError) {
+          PostListUtils.showError(context, state);
+        }
+      },
+      builder: (context, state) {
+        if (state is JobPostsInitial) {
+          return PostListUtils.buildInitialState(context);
+        } else if (state is JobPostsLoading) {
+          return PostListUtils.buildLoadingState();
+        } else if (state is JobPostsLoaded) {
+          return PostListUtils.buildLoadedState(context, state.posts);
+        } else if (state is JobPostsError) {
+          return PostListUtils.buildInitialState(context);
+        }
+        return Container();
+      },
     );
   }
 }
