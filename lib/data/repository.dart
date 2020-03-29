@@ -26,13 +26,18 @@ class FakePostRepository implements PostRepository {
 
         // Simulate some network error
         if (random.nextBool()) {
-          throw NetworkError();
+//          throw NetworkError();
         }
 
         List<Post> posts;
         switch (type) {
           case PostType.top:
             posts = _buildTopPostList();
+
+            break;
+
+          case PostType.ask:
+            posts = _buildAskPostList();
 
             break;
 
@@ -98,6 +103,26 @@ class FakePostRepository implements PostRepository {
           ),
         ),
       ),
+    );
+  }
+
+  List<Post> _buildAskPostList() {
+    return List<Post>.generate(
+      30,
+          (index) =>
+          Post(
+            index: index + 1,
+            by: 'whoishiring',
+            descendants: 680,
+            id: 9127232,
+            kids: [9127461, 9128292, 9127721, 9127410],
+            score: 413,
+            time: 1425222252,
+            title: 'Ask HN: Who is hiring? (March 2015)',
+            text:
+            'Please lead with the location of the position and include the keywords INTERN, REMOTE, or VISA if the corresponding sort of candidate is welcome. Feel free to post any job that may interest HN readers from executive assistant to machine learning expert to CTO.<p>Please do not post recruiting firms or job boards.',
+            type: 'story',
+          ),
     );
   }
 }
