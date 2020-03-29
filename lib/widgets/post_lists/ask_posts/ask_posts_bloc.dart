@@ -3,10 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fhn/data/models/post.dart';
-import 'package:fhn/data/repository.dart';
+import 'package:fhn/data/posts_repository.dart';
 
 part 'ask_posts_event.dart';
-
 part 'ask_posts_state.dart';
 
 class AskPostsBloc extends Bloc<AskPostsEvent, AskPostsState> {

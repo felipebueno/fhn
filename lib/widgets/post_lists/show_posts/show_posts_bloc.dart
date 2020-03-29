@@ -3,10 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fhn/data/models/post.dart';
-import 'package:fhn/data/repository.dart';
+import 'package:fhn/data/posts_repository.dart';
 
 part 'show_posts_event.dart';
-
 part 'show_posts_state.dart';
 
 class ShowPostsBloc extends Bloc<ShowPostsEvent, ShowPostsState> {
