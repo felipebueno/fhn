@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:dio/dio.dart';
 import 'package:faker/faker.dart';
 import 'package:fhn/data/models/post.dart';
 
@@ -15,8 +16,58 @@ abstract class PostRepository {
 }
 
 class RealPostRepository implements PostRepository {
+  final Dio dio = Dio();
+
   @override
-  Future<List<Post>> fetchPosts(PostType postType) {}
+  Future<List<Post>> fetchPosts(PostType postType) async {
+    final apiUrl = 'https://hacker-news.firebaseio.com/v0';
+    String stories = 'topstories';
+
+    switch (postType) {
+      case PostType.top:
+        stories = 'topstories';
+
+        break;
+
+      case PostType.ask:
+        stories = 'askstories';
+
+        break;
+
+      case PostType.show:
+        stories = 'showstories';
+
+        break;
+
+      case PostType.job:
+        stories = 'jobstories';
+
+        break;
+
+      default:
+        break;
+    }
+
+    final response = await dio.get('$apiUrl/$stories.json');
+    if (response.statusCode == 200) {
+      List<Post> posts = [];
+      final List<dynamic> ids = response.data;
+
+      for (var i = 0; i < 30; ++i) {
+        final response = await dio.get('$apiUrl/item/${ids[i]}.json');
+        if (response.statusCode == 200) {
+          final post = Post.fromJson(response.data);
+          post.index = i + 1;
+
+          posts.add(post);
+        }
+      }
+
+      return posts;
+    } else {
+      throw Exception('error fetching posts');
+    }
+  }
 }
 
 class FakePostRepository implements PostRepository {

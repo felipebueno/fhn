@@ -26,6 +26,8 @@ class TopPostsBloc extends Bloc<TopPostsEvent, TopPostsState> {
       } on NetworkError {
         yield TopPostsError(
             "Couldn't fetch posts. Make sure your device is connected to the internet.");
+      } catch (e) {
+        yield TopPostsError(e.toString());
       }
     }
   }

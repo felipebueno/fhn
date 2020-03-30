@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class Post extends Equatable {
-  final int index;
+  int index;
   final String by; // The username of the item's author.
   final int
   descendants; // In the case of stories or polls, the total comment count.
