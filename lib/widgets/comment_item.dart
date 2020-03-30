@@ -30,7 +30,7 @@ class CommentItem extends StatelessWidget {
           bottom: 8.0,
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Text(
               '${this.post.text} ',
