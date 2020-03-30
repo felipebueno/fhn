@@ -1,6 +1,6 @@
 import 'package:fhn/constants.dart';
 import 'package:fhn/data/models/post.dart';
-import 'package:fhn/pages/post_comments.dart';
+import 'package:fhn/pages/comments/comments.dart';
 import 'package:flutter/material.dart';
 
 class CommentItem extends StatelessWidget {
@@ -18,7 +18,7 @@ class CommentItem extends StatelessWidget {
         if (this.post.comments == null) return;
 
         Navigator.of(context).pushNamed(
-          Comments.id,
+          PostComments.id,
           arguments: this.post,
         );
       },

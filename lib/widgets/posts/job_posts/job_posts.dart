@@ -1,33 +1,33 @@
 import 'package:fhn/data/post_repository.dart';
 import 'package:fhn/widgets/base_bloc_consumer.dart';
-import 'package:fhn/widgets/post_lists/top_posts/top_posts_bloc.dart';
-import 'package:fhn/widgets/post_lists/utils.dart';
+import 'package:fhn/widgets/posts/job_posts/job_posts_bloc.dart';
+import 'package:fhn/widgets/posts/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class TopPosts extends StatelessWidget {
-  const TopPosts({
+class JobPosts extends StatelessWidget {
+  const JobPosts({
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BaseBlocConsumer<TopPostsBloc, TopPostsState>(
+    return BaseBlocConsumer<JobPostsBloc, JobPostsState>(
       onReady: () =>
-          BlocProvider.of<TopPostsBloc>(context).add(GetPosts(PostType.top)),
+          BlocProvider.of<JobPostsBloc>(context).add(GetPosts(PostType.job)),
       listener: (context, state) {
-        if (state is TopPostsError) {
+        if (state is JobPostsError) {
           PostListUtils.showError(context, state);
         }
       },
       builder: (context, state) {
-        if (state is TopPostsInitial) {
+        if (state is JobPostsInitial) {
           return PostListUtils.buildInitialState(context);
-        } else if (state is TopPostsLoading) {
+        } else if (state is JobPostsLoading) {
           return PostListUtils.buildLoadingState();
-        } else if (state is TopPostsLoaded) {
+        } else if (state is JobPostsLoaded) {
           return PostListUtils.buildLoadedState(context, state.posts);
-        } else if (state is TopPostsError) {
+        } else if (state is JobPostsError) {
           return PostListUtils.buildInitialState(context);
         }
         return Container();

@@ -4,7 +4,7 @@ import 'package:fhn/widgets/generic_page_scaffold.dart';
 import 'package:fhn/widgets/post_item.dart';
 import 'package:flutter/material.dart';
 
-class Comments extends StatelessWidget {
+class PostComments extends StatelessWidget {
   static const String id = 'comments';
 
   @override

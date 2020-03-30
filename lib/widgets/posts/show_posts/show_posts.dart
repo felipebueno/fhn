@@ -1,7 +1,7 @@
 import 'package:fhn/data/post_repository.dart';
 import 'package:fhn/widgets/base_bloc_consumer.dart';
-import 'package:fhn/widgets/post_lists/show_posts/show_posts_bloc.dart';
-import 'package:fhn/widgets/post_lists/utils.dart';
+import 'package:fhn/widgets/posts/show_posts/show_posts_bloc.dart';
+import 'package:fhn/widgets/posts/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
