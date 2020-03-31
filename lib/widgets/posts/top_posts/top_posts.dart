@@ -13,8 +13,7 @@ class TopPosts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseBlocConsumer<TopPostsBloc, TopPostsState>(
-      onReady: () =>
-          BlocProvider.of<TopPostsBloc>(context).add(GetTopPosts()),
+      onReady: () => BlocProvider.of<TopPostsBloc>(context).add(GetTopPosts()),
       listener: (context, state) {
         if (state is TopPostsError) {
           Utils.showInfo(context, state.message);
@@ -28,7 +27,7 @@ class TopPosts extends StatelessWidget {
         } else if (state is TopPostsLoaded) {
           return PostListUtils.buildLoadedState(context, state.posts);
         } else if (state is TopPostsError) {
-          return PostListUtils.buildInitialState(context);
+          return PostListUtils.buildErrorState(context, state.message);
         }
         return Container();
       },

@@ -1,5 +1,4 @@
 import 'package:fhn/constants.dart';
-import 'package:fhn/utils.dart';
 import 'package:fhn/widgets/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,9 +7,14 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 class BaseTab<TBloc extends Bloc<dynamic, dynamic>> extends StatefulWidget {
   final Widget body;
   final onRefresh;
+  final onMoreTap;
 
-  const BaseTab({Key key, @required this.body, this.onRefresh})
-      : super(key: key);
+  const BaseTab({
+    Key key,
+    @required this.body,
+    this.onRefresh,
+    this.onMoreTap,
+  }) : super(key: key);
 
   @override
   _BaseTabState<TBloc> createState() => _BaseTabState<TBloc>();
@@ -22,9 +26,17 @@ class _BaseTabState<TBloc extends Bloc<dynamic, dynamic>>
   RefreshController _refreshController =
   RefreshController(initialRefresh: false);
 
+  TBloc _blocProvider;
+
   void _onRefresh() async {
-    BlocProvider.of<TBloc>(context).add(widget.onRefresh);
+    _blocProvider.add(widget.onRefresh);
     _refreshController.refreshCompleted();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _blocProvider = BlocProvider.of<TBloc>(context);
   }
 
   @override
@@ -57,7 +69,7 @@ class _BaseTabState<TBloc extends Bloc<dynamic, dynamic>>
                             borderSide: BorderSide(width: 2.0,
                                 color: kHNOrange),
                             onPressed: () {
-                              Utils.showInfo(context, 'NOT IMPLEMENTED YET');
+                              _blocProvider.add(widget.onMoreTap);
                             },
                           ),
                         ),

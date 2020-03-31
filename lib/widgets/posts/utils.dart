@@ -21,7 +21,13 @@ class PostListUtils {
                   .toList(),
             );
 
-  static Widget buildErrorState(context) {
-    return Center(child: Text('Error loading posts'));
+  static Widget buildErrorState(context, String message) {
+    return Center(
+        child: Column(
+          children: <Widget>[
+            Text('Error loading posts:'),
+            Text(message),
+          ],
+        ));
   }
 }

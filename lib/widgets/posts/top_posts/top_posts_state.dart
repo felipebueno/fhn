@@ -33,3 +33,10 @@ class TopPostsError extends TopPostsState {
   @override
   List<Object> get props => [message];
 }
+
+class TopPostsLoadingMore extends TopPostsState {
+  const TopPostsLoadingMore();
+
+  @override
+  List<Object> get props => [];
+}

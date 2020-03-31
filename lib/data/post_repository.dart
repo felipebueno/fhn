@@ -14,6 +14,8 @@ enum PostType {
 abstract class PostRepository {
   Future<List<Post>> fetchPosts(PostType postType);
 
+  Future<List<Post>> fetchMorePosts(PostType postType, int from, int to);
+
   Future<List<Post>> fetchComments(Post post);
 }
 
@@ -53,19 +55,58 @@ class RealPostRepository implements PostRepository {
     final response = await dio.get('$apiUrl/$stories.json');
     if (response.statusCode == 200) {
       List<dynamic> ids = response.data;
-      return _fetchItems(ids.take(30).toList());
+      return _fetchItems(ids, 0, 30);
     } else {
       throw Exception('error fetching posts');
     }
   }
 
   @override
-  Future<List<Post>> fetchComments(Post post) async => _fetchItems(post.kids);
+  Future<List<Post>> fetchMorePosts(PostType postType, int from, int to) async {
+    String stories = '';
 
-  Future<List<Post>> _fetchItems(List<dynamic> ids) async {
+    switch (postType) {
+      case PostType.top:
+        stories = 'topstories';
+
+        break;
+
+      case PostType.ask:
+        stories = 'askstories';
+
+        break;
+
+      case PostType.show:
+        stories = 'showstories';
+
+        break;
+
+      case PostType.job:
+        stories = 'jobstories';
+
+        break;
+
+      default:
+        break;
+    }
+
+    final response = await dio.get('$apiUrl/$stories.json');
+    if (response.statusCode == 200) {
+      List<dynamic> ids = response.data;
+      return _fetchItems(ids.toList(), from, to);
+    } else {
+      throw Exception('Error fetching more posts');
+    }
+  }
+
+  @override
+  Future<List<Post>> fetchComments(Post post) async =>
+      _fetchItems(post.kids, 0, post.kids.length);
+
+  Future<List<Post>> _fetchItems(List<dynamic> ids, int from, int to) async {
     List<Post> posts = [];
 
-    for (var i = 0; i < ids.length; ++i) {
+    for (var i = from; i < to; ++i) {
       final response = await dio.get('$apiUrl/item/${ids[i]}.json');
       if (response.statusCode == 200) {
         final post = Post.fromJson(response.data);
@@ -244,6 +285,11 @@ class FakePostRepository implements PostRepository {
             url: 'https://smartasset.com/careers/?gh_jid=4594630002',
           ),
     );
+  }
+
+  @override
+  Future<List<Post>> fetchMorePosts(PostType postType, int from, int to) {
+    throw UnimplementedError();
   }
 }
 

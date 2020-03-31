@@ -10,3 +10,10 @@ class GetTopPosts extends TopPostsEvent {
   @override
   List<Object> get props => [];
 }
+
+class GetMoreTopPosts extends TopPostsEvent {
+  const GetMoreTopPosts();
+
+  @override
+  List<Object> get props => [];
+}

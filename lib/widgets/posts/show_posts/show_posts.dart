@@ -28,7 +28,7 @@ class ShowPosts extends StatelessWidget {
         } else if (state is ShowPostsLoaded) {
           return PostListUtils.buildLoadedState(context, state.posts);
         } else if (state is ShowPostsError) {
-          return PostListUtils.buildInitialState(context);
+          return PostListUtils.buildErrorState(context, state.message);
         }
         return Container();
       },
