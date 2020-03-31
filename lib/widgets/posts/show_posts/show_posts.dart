@@ -1,4 +1,3 @@
-import 'package:fhn/data/post_repository.dart';
 import 'package:fhn/utils.dart';
 import 'package:fhn/widgets/base_bloc_consumer.dart';
 import 'package:fhn/widgets/posts/show_posts/show_posts_bloc.dart';
@@ -15,7 +14,7 @@ class ShowPosts extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseBlocConsumer<ShowPostsBloc, ShowPostsState>(
       onReady: () =>
-          BlocProvider.of<ShowPostsBloc>(context).add(GetPosts(PostType.show)),
+          BlocProvider.of<ShowPostsBloc>(context).add(GetShowPosts()),
       listener: (context, state) {
         if (state is ShowPostsError) {
           Utils.showInfo(context, state.message);

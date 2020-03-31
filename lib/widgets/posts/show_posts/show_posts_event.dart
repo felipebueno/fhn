@@ -4,11 +4,9 @@ abstract class ShowPostsEvent extends Equatable {
   const ShowPostsEvent();
 }
 
-class GetPosts extends ShowPostsEvent {
-  final PostType postType;
-
-  const GetPosts(this.postType);
+class GetShowPosts extends ShowPostsEvent {
+  const GetShowPosts();
 
   @override
-  List<Object> get props => [postType];
+  List<Object> get props => [];
 }

@@ -1,4 +1,3 @@
-import 'package:fhn/data/post_repository.dart';
 import 'package:fhn/utils.dart';
 import 'package:fhn/widgets/base_bloc_consumer.dart';
 import 'package:fhn/widgets/posts/top_posts/top_posts_bloc.dart';
@@ -15,7 +14,7 @@ class TopPosts extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseBlocConsumer<TopPostsBloc, TopPostsState>(
       onReady: () =>
-          BlocProvider.of<TopPostsBloc>(context).add(GetPosts(PostType.top)),
+          BlocProvider.of<TopPostsBloc>(context).add(GetTopPosts()),
       listener: (context, state) {
         if (state is TopPostsError) {
           Utils.showInfo(context, state.message);

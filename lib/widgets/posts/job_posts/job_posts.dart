@@ -1,4 +1,3 @@
-import 'package:fhn/data/post_repository.dart';
 import 'package:fhn/utils.dart';
 import 'package:fhn/widgets/base_bloc_consumer.dart';
 import 'package:fhn/widgets/posts/job_posts/job_posts_bloc.dart';
@@ -14,8 +13,7 @@ class JobPosts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseBlocConsumer<JobPostsBloc, JobPostsState>(
-      onReady: () =>
-          BlocProvider.of<JobPostsBloc>(context).add(GetPosts(PostType.job)),
+      onReady: () => BlocProvider.of<JobPostsBloc>(context).add(GetJobPosts()),
       listener: (context, state) {
         if (state is JobPostsError) {
           Utils.showInfo(context, state.message);

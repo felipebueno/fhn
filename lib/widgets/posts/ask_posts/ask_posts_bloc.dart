@@ -21,9 +21,9 @@ class AskPostsBloc extends Bloc<AskPostsEvent, AskPostsState> {
     AskPostsEvent event,
   ) async* {
     yield AskPostsLoading();
-    if (event is GetPosts) {
+    if (event is GetAskPosts) {
       try {
-        final posts = await postRepository.fetchPosts(event.postType);
+        final posts = await postRepository.fetchPosts(PostType.ask);
         yield AskPostsLoaded(posts);
       } on NetworkError {
         yield AskPostsError(

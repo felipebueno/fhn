@@ -19,9 +19,9 @@ class TopPostsBloc extends Bloc<TopPostsEvent, TopPostsState> {
   @override
   Stream<TopPostsState> mapEventToState(TopPostsEvent event,) async* {
     yield TopPostsLoading();
-    if (event is GetPosts) {
+    if (event is GetTopPosts) {
       try {
-        final posts = await postRepository.fetchPosts(event.postType);
+        final posts = await postRepository.fetchPosts(PostType.top);
         yield TopPostsLoaded(posts);
       } on NetworkError {
         yield TopPostsError(

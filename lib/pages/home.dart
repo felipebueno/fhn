@@ -23,10 +23,22 @@ class Home extends StatelessWidget {
   ];
 
   final List<Widget> tabViews = [
-    BaseTab(body: TopPosts()),
-    BaseTab(body: AskPosts()),
-    BaseTab(body: ShowPosts()),
-    BaseTab(body: JobPosts()),
+    BaseTab<TopPostsBloc>(
+      body: TopPosts(),
+      onRefresh: GetTopPosts(),
+    ),
+    BaseTab<AskPostsBloc>(
+      body: AskPosts(),
+      onRefresh: GetAskPosts(),
+    ),
+    BaseTab<ShowPostsBloc>(
+      body: ShowPosts(),
+      onRefresh: GetShowPosts(),
+    ),
+    BaseTab<JobPostsBloc>(
+      body: JobPosts(),
+      onRefresh: GetJobPosts(),
+    ),
   ];
 
   @override

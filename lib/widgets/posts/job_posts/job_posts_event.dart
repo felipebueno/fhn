@@ -4,11 +4,9 @@ abstract class JobPostsEvent extends Equatable {
   const JobPostsEvent();
 }
 
-class GetPosts extends JobPostsEvent {
-  final PostType postType;
-
-  const GetPosts(this.postType);
+class GetJobPosts extends JobPostsEvent {
+  const GetJobPosts();
 
   @override
-  List<Object> get props => [postType];
+  List<Object> get props => [];
 }

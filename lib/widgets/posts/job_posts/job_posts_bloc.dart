@@ -21,9 +21,9 @@ class JobPostsBloc extends Bloc<JobPostsEvent, JobPostsState> {
     JobPostsEvent event,
   ) async* {
     yield JobPostsLoading();
-    if (event is GetPosts) {
+    if (event is GetJobPosts) {
       try {
-        final posts = await postRepository.fetchPosts(event.postType);
+        final posts = await postRepository.fetchPosts(PostType.job);
         yield JobPostsLoaded(posts);
       } on NetworkError {
         yield JobPostsError(

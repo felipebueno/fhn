@@ -21,9 +21,9 @@ class ShowPostsBloc extends Bloc<ShowPostsEvent, ShowPostsState> {
     ShowPostsEvent event,
   ) async* {
     yield ShowPostsLoading();
-    if (event is GetPosts) {
+    if (event is GetShowPosts) {
       try {
-        final posts = await postRepository.fetchPosts(event.postType);
+        final posts = await postRepository.fetchPosts(PostType.show);
         yield ShowPostsLoaded(posts);
       } on NetworkError {
         yield ShowPostsError(
