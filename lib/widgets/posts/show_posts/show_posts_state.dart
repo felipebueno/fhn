@@ -33,3 +33,10 @@ class ShowPostsError extends ShowPostsState {
   @override
   List<Object> get props => [message];
 }
+
+class ShowPostsLoadingMore extends ShowPostsState {
+  const ShowPostsLoadingMore();
+
+  @override
+  List<Object> get props => [];
+}

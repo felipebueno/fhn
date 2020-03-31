@@ -36,6 +36,7 @@ class Home extends StatelessWidget {
     BaseTab<ShowPostsBloc>(
       body: ShowPosts(),
       onRefresh: GetShowPosts(),
+      onMoreTap: GetMoreShowPosts(),
     ),
     BaseTab<JobPostsBloc>(
       body: JobPosts(),

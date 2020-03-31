@@ -10,6 +10,9 @@ part 'show_posts_state.dart';
 
 class ShowPostsBloc extends Bloc<ShowPostsEvent, ShowPostsState> {
   final PostRepository postRepository;
+  List<Post> posts;
+  int from = 30;
+  int to = 60;
 
   ShowPostsBloc(this.postRepository);
 
@@ -20,14 +23,41 @@ class ShowPostsBloc extends Bloc<ShowPostsEvent, ShowPostsState> {
   Stream<ShowPostsState> mapEventToState(
     ShowPostsEvent event,
   ) async* {
-    yield ShowPostsLoading();
     if (event is GetShowPosts) {
+      yield ShowPostsLoading();
+
+      from = 30;
+      to = 60;
+
       try {
-        final posts = await postRepository.fetchPosts(PostType.show);
+        posts = await postRepository.fetchPosts(PostType.show);
         yield ShowPostsLoaded(posts);
       } on NetworkError {
         yield ShowPostsError(
-            "Couldn't fetch posts. Make sure your device is connected to the internet.");
+            "Couldn't fetch show posts. Make sure your device is connected to the internet.");
+      } catch (e) {
+        yield ShowPostsError(e.toString());
+      }
+    } else if (event is GetMoreShowPosts) {
+//      yield ShowPostsLoadingMore();
+
+      try {
+        final List<Post> newPosts =
+        await postRepository.fetchMorePosts(PostType.show, from, to);
+
+        final List<Post> morePosts =
+        List<Post>.from(ShowPostsLoaded(posts).posts)
+          ..addAll(newPosts);
+
+        posts = morePosts;
+
+        from += 30;
+        to += 30;
+
+        yield ShowPostsLoaded(posts);
+      } on NetworkError {
+        yield ShowPostsError(
+            "Couldn't fetch more show posts. Make sure your device is connected to the internet.");
       } catch (e) {
         yield ShowPostsError(e.toString());
       }

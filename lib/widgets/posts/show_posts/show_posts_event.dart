@@ -10,3 +10,10 @@ class GetShowPosts extends ShowPostsEvent {
   @override
   List<Object> get props => [];
 }
+
+class GetMoreShowPosts extends ShowPostsEvent {
+  const GetMoreShowPosts();
+
+  @override
+  List<Object> get props => [];
+}
