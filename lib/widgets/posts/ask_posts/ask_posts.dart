@@ -1,4 +1,5 @@
 import 'package:fhn/data/post_repository.dart';
+import 'package:fhn/utils.dart';
 import 'package:fhn/widgets/base_bloc_consumer.dart';
 import 'package:fhn/widgets/posts/ask_posts/ask_posts_bloc.dart';
 import 'package:fhn/widgets/posts/utils.dart';
@@ -17,7 +18,7 @@ class AskPosts extends StatelessWidget {
           BlocProvider.of<AskPostsBloc>(context).add(GetPosts(PostType.ask)),
       listener: (context, state) {
         if (state is AskPostsError) {
-          PostListUtils.showError(context, state);
+          Utils.showInfo(context, state.message);
         }
       },
       builder: (context, state) {

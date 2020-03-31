@@ -53,10 +53,7 @@ class RealPostRepository implements PostRepository {
     final response = await dio.get('$apiUrl/$stories.json');
     if (response.statusCode == 200) {
       List<dynamic> ids = response.data;
-      ids.length =
-      30; // TODO: Implement pagination and remove this temporary hack
-
-      return _fetchItems(ids);
+      return _fetchItems(ids.take(30).toList());
     } else {
       throw Exception('error fetching posts');
     }

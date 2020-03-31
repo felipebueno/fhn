@@ -23,12 +23,4 @@ class PostListUtils {
   static Widget buildErrorState(context) {
     return Center(child: Text('Error loading posts'));
   }
-
-  static void showError(BuildContext context, dynamic state) {
-    Scaffold.of(context).showSnackBar(
-      SnackBar(
-        content: Text(state.message),
-      ),
-    );
-  }
 }

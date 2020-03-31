@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
@@ -7,5 +8,13 @@ class Utils {
     } else {
       throw 'Could not launch $url';
     }
+  }
+
+  static void showInfo(BuildContext context, String message) {
+    Scaffold.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
+    );
   }
 }
