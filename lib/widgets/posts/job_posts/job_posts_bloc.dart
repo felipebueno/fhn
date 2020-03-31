@@ -39,7 +39,7 @@ class JobPostsBloc extends Bloc<JobPostsEvent, JobPostsState> {
         yield JobPostsError(e.toString());
       }
     } else if (event is GetMoreJobPosts) {
-//      yield ShowPostsLoadingMore();
+      yield JobPostsLoadingMore();
 
       try {
         final List<Post> newPosts =

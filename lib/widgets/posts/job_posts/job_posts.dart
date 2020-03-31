@@ -1,3 +1,4 @@
+import 'package:fhn/data/models/post.dart';
 import 'package:fhn/utils.dart';
 import 'package:fhn/widgets/base_bloc_consumer.dart';
 import 'package:fhn/widgets/posts/job_posts/job_posts_bloc.dart';
@@ -12,6 +13,8 @@ class JobPosts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Post> posts;
+
     return BaseBlocConsumer<JobPostsBloc, JobPostsState>(
       onReady: () => BlocProvider.of<JobPostsBloc>(context).add(GetJobPosts()),
       listener: (context, state) {
@@ -25,9 +28,12 @@ class JobPosts extends StatelessWidget {
         } else if (state is JobPostsLoading) {
           return PostListUtils.buildLoadingState();
         } else if (state is JobPostsLoaded) {
-          return PostListUtils.buildLoadedState(context, state.posts, false);
+          posts = state.posts;
+          return PostListUtils.buildLoadedState(context, posts, false);
         } else if (state is JobPostsError) {
           return PostListUtils.buildErrorState(context, state.message);
+        } else if (state is JobPostsLoadingMore) {
+          return PostListUtils.buildLoadedState(context, posts, true);
         }
         return Container();
       },
