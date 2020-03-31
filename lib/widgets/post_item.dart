@@ -1,8 +1,9 @@
 import 'package:fhn/constants.dart';
 import 'package:fhn/data/models/post.dart';
 import 'package:fhn/pages/comments/comments.dart';
+import 'package:fhn/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 class PostItem extends StatelessWidget {
   final Post post;
@@ -13,14 +14,6 @@ class PostItem extends StatelessWidget {
     this.isCommentsPage = false,
   }) : super(key: key);
 
-  _launchURL(url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -28,7 +21,7 @@ class PostItem extends StatelessWidget {
           ? () {
         if (this.post.url == null) return;
 
-        _launchURL(this.post.url);
+        Utils.launchURL(this.post.url);
       }
           : () {
         Navigator.of(context).pushNamed(
@@ -56,24 +49,26 @@ class PostItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  RichText(
+                  Html(
+                    data: '${this.post.title ?? this.post.text} ',
+                    defaultTextStyle:
+                    TextStyle(color: Colors.black, fontSize: 16),
+                  ),
+                  this.post.url == null
+                      ? Container()
+                      : RichText(
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                          text: '${this.post.title ?? this.post.text} ',
-                          style: TextStyle(color: Colors.black, fontSize: 16),
-                        ),
-                        TextSpan(
-                          text: this.post.url == null ? '' : '(',
+                          text: '(',
                           style: TextStyle(color: kHNGrey),
                         ),
                         TextSpan(
-                          text:
-                          this.post.url == null ? '' : '${this.post.host}',
+                          text: '${this.post.host}',
                           style: TextStyle(color: kHNGrey),
                         ),
                         TextSpan(
-                          text: this.post.url == null ? '' : ')',
+                          text: ')',
                           style: TextStyle(color: kHNGrey),
                         ),
                       ],

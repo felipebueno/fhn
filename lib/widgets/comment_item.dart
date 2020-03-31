@@ -1,7 +1,9 @@
 import 'package:fhn/constants.dart';
 import 'package:fhn/data/models/post.dart';
 import 'package:fhn/pages/comments/comments.dart';
+import 'package:fhn/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 class CommentItem extends StatelessWidget {
   final Post post;
@@ -32,9 +34,12 @@ class CommentItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text(
-              '${this.post.text} ',
-              style: TextStyle(color: Colors.black, fontSize: 16),
+            Html(
+              data: '${this.post.text} ',
+              defaultTextStyle: TextStyle(color: Colors.black, fontSize: 16),
+              onLinkTap: (url) {
+                Utils.launchURL(url);
+              },
             ),
             SizedBox(height: 8.0),
             RichText(
