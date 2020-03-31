@@ -33,3 +33,10 @@ class JobPostsError extends JobPostsState {
   @override
   List<Object> get props => [message];
 }
+
+class JobPostsLoadingMore extends JobPostsState {
+  const JobPostsLoadingMore();
+
+  @override
+  List<Object> get props => [];
+}

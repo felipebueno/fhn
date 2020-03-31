@@ -33,7 +33,7 @@ class PostItem extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: <Widget>[
-            this.isCommentsPage
+            this.isCommentsPage || this.post.type == 'job'
                 ? Container()
                 : Container(
               width: 32.0,

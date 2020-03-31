@@ -10,3 +10,10 @@ class GetJobPosts extends JobPostsEvent {
   @override
   List<Object> get props => [];
 }
+
+class GetMoreJobPosts extends JobPostsEvent {
+  const GetMoreJobPosts();
+
+  @override
+  List<Object> get props => [];
+}
