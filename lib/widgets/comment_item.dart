@@ -35,7 +35,7 @@ class CommentItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Html(
-              data: '${this.post.text} ',
+              data: '${this.post.text ?? 'DELETED'} ',
               defaultTextStyle: TextStyle(color: Colors.black, fontSize: 16),
               onLinkTap: (url) {
                 Utils.launchURL(url);
@@ -46,7 +46,7 @@ class CommentItem extends StatelessWidget {
               text: TextSpan(
                 children: <TextSpan>[
                   TextSpan(
-                    text: '${this.post.by}',
+                    text: '${this.post.by ?? 'deleted'}',
                     style: TextStyle(color: kHNGrey),
                   ),
                   TextSpan(

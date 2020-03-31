@@ -21,7 +21,7 @@ class PostComments extends StatelessWidget {
         body: Column(
           children: <Widget>[
             PostItem(post, isCommentsPage: true),
-            CommentList(post: post),
+            Expanded(child: CommentList(post: post)),
           ],
         ),
       ),
