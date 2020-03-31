@@ -53,6 +53,9 @@ class PostItem extends StatelessWidget {
                     data: '${this.post.title ?? this.post.text} ',
                     defaultTextStyle:
                     TextStyle(color: Colors.black, fontSize: 16),
+                    onLinkTap: (url) {
+                      Utils.launchURL(url);
+                    },
                   ),
                   this.post.url == null
                       ? Container()
