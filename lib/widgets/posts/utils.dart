@@ -7,7 +7,8 @@ class PostListUtils {
     return Center(child: Text('Preparing to load posts'));
   }
 
-  static Widget buildLoadingState() => CircularProgressIndicator();
+  static Widget buildLoadingState() =>
+      Center(child: CircularProgressIndicator());
 
   static Widget buildLoadedState(BuildContext context, List<Post> posts) =>
       posts.length == 0
