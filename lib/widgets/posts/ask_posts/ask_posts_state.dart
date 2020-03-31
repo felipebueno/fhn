@@ -33,3 +33,10 @@ class AskPostsError extends AskPostsState {
   @override
   List<Object> get props => [message];
 }
+
+class AskPostsLoadingMore extends AskPostsState {
+  const AskPostsLoadingMore();
+
+  @override
+  List<Object> get props => [];
+}

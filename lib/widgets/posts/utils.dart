@@ -23,11 +23,13 @@ class PostListUtils {
 
   static Widget buildErrorState(context, String message) {
     return Center(
-        child: Column(
-          children: <Widget>[
-            Text('Error loading posts:'),
-            Text(message),
-          ],
-        ));
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text('Error loading posts:'),
+          Text(message),
+        ],
+      ),
+    );
   }
 }

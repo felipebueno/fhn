@@ -11,11 +11,10 @@ part 'top_posts_state.dart';
 class TopPostsBloc extends Bloc<TopPostsEvent, TopPostsState> {
   final PostRepository postRepository;
   List<Post> posts;
-
-  TopPostsBloc(this.postRepository);
-
   int from = 30;
   int to = 60;
+
+  TopPostsBloc(this.postRepository);
 
   @override
   TopPostsState get initialState => TopPostsInitial();
@@ -33,7 +32,7 @@ class TopPostsBloc extends Bloc<TopPostsEvent, TopPostsState> {
         yield TopPostsLoaded(posts);
       } on NetworkError {
         yield TopPostsError(
-            "Couldn't fetch posts. Make sure your device is connected to the internet.");
+            "Couldn't fetch top posts. Make sure your device is connected to the internet.");
       } catch (e) {
         yield TopPostsError(e.toString());
       }
@@ -56,7 +55,7 @@ class TopPostsBloc extends Bloc<TopPostsEvent, TopPostsState> {
         yield TopPostsLoaded(posts);
       } on NetworkError {
         yield TopPostsError(
-            "Couldn't fetch posts. Make sure your device is connected to the internet.");
+            "Couldn't fetch more top posts. Make sure your device is connected to the internet.");
       } catch (e) {
         yield TopPostsError(e.toString());
       }

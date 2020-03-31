@@ -10,3 +10,10 @@ class GetAskPosts extends AskPostsEvent {
   @override
   List<Object> get props => [];
 }
+
+class GetMoreAskPosts extends AskPostsEvent {
+  const GetMoreAskPosts();
+
+  @override
+  List<Object> get props => [];
+}

@@ -107,6 +107,8 @@ class RealPostRepository implements PostRepository {
     List<Post> posts = [];
 
     for (var i = from; i < to; ++i) {
+      if (i >= ids.length) break;
+
       final response = await dio.get('$apiUrl/item/${ids[i]}.json');
       if (response.statusCode == 200) {
         final post = Post.fromJson(response.data);
