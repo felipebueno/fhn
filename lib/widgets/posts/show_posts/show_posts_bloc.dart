@@ -28,6 +28,8 @@ class ShowPostsBloc extends Bloc<ShowPostsEvent, ShowPostsState> {
       } on NetworkError {
         yield ShowPostsError(
             "Couldn't fetch posts. Make sure your device is connected to the internet.");
+      } catch (e) {
+        yield ShowPostsError(e.toString());
       }
     }
   }

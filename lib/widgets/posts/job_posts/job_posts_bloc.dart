@@ -28,6 +28,8 @@ class JobPostsBloc extends Bloc<JobPostsEvent, JobPostsState> {
       } on NetworkError {
         yield JobPostsError(
             "Couldn't fetch posts. Make sure your device is connected to the internet.");
+      } catch (e) {
+        yield JobPostsError(e.toString());
       }
     }
   }

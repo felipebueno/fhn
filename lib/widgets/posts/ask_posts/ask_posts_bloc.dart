@@ -28,6 +28,8 @@ class AskPostsBloc extends Bloc<AskPostsEvent, AskPostsState> {
       } on NetworkError {
         yield AskPostsError(
             "Couldn't fetch posts. Make sure your device is connected to the internet.");
+      } catch (e) {
+        yield AskPostsError(e.toString());
       }
     }
   }
