@@ -66,7 +66,7 @@ class _BaseTabState<TBloc extends Bloc<dynamic, dynamic>>
                           child: OutlineButton(
                             textColor: kHNOrange,
                             child: Text('MORE'),
-                            borderSide: BorderSide(width: 2.0,
+                            borderSide: BorderSide(width: 1.0,
                                 color: kHNOrange),
                             onPressed: () {
                               _blocProvider.add(widget.onMoreTap);

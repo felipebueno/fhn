@@ -39,7 +39,7 @@ class ShowPostsBloc extends Bloc<ShowPostsEvent, ShowPostsState> {
         yield ShowPostsError(e.toString());
       }
     } else if (event is GetMoreShowPosts) {
-//      yield ShowPostsLoadingMore();
+      yield ShowPostsLoadingMore();
 
       try {
         final List<Post> newPosts =

@@ -110,6 +110,9 @@ class RealPostRepository implements PostRepository {
       if (i >= ids.length) break;
 
       final response = await dio.get('$apiUrl/item/${ids[i]}.json');
+
+      if (response.data == null) continue; // Post deleted?
+
       if (response.statusCode == 200) {
         final post = Post.fromJson(response.data);
         post.index = i + 1;
