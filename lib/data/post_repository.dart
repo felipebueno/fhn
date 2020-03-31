@@ -13,15 +13,17 @@ enum PostType {
 
 abstract class PostRepository {
   Future<List<Post>> fetchPosts(PostType postType);
+
+  Future<List<Post>> fetchComments(Post post);
 }
 
 class RealPostRepository implements PostRepository {
+  static const apiUrl = 'https://hacker-news.firebaseio.com/v0';
   final Dio dio = Dio();
 
   @override
   Future<List<Post>> fetchPosts(PostType postType) async {
-    final apiUrl = 'https://hacker-news.firebaseio.com/v0';
-    String stories = 'topstories';
+    String stories = '';
 
     switch (postType) {
       case PostType.top:
@@ -50,23 +52,33 @@ class RealPostRepository implements PostRepository {
 
     final response = await dio.get('$apiUrl/$stories.json');
     if (response.statusCode == 200) {
-      List<Post> posts = [];
-      final List<dynamic> ids = response.data;
+      List<dynamic> ids = response.data;
+      ids.length =
+      30; // TODO: Implement pagination to remove this temporary hack
 
-      for (var i = 0; i < 30; ++i) {
-        final response = await dio.get('$apiUrl/item/${ids[i]}.json');
-        if (response.statusCode == 200) {
-          final post = Post.fromJson(response.data);
-          post.index = i + 1;
-
-          posts.add(post);
-        }
-      }
-
-      return posts;
+      return _fetchItems(ids);
     } else {
       throw Exception('error fetching posts');
     }
+  }
+
+  @override
+  Future<List<Post>> fetchComments(Post post) async => _fetchItems(post.kids);
+
+  Future<List<Post>> _fetchItems(List<dynamic> ids) async {
+    List<Post> posts = [];
+
+    for (var i = 0; i < ids.length; ++i) {
+      final response = await dio.get('$apiUrl/item/${ids[i]}.json');
+      if (response.statusCode == 200) {
+        final post = Post.fromJson(response.data);
+        post.index = i + 1;
+
+        posts.add(post);
+      }
+    }
+
+    return posts;
   }
 }
 
@@ -116,6 +128,12 @@ class FakePostRepository implements PostRepository {
         return posts;
       },
     );
+  }
+
+  @override
+  Future<List<Post>> fetchComments(Post post) {
+    // TODO: implement fetchComments
+    throw UnimplementedError();
   }
 
   List<Post> _buildTopPostList() {

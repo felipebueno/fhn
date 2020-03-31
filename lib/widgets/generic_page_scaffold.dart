@@ -1,6 +1,9 @@
 import 'package:fhn/constants.dart';
+import 'package:fhn/data/post_repository.dart';
+import 'package:fhn/pages/comments/comments_bloc.dart';
 import 'package:fhn/pages/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GenericPageScaffold extends StatelessWidget {
   final String title;
@@ -26,7 +29,9 @@ class GenericPageScaffold extends StatelessWidget {
                       .pushNamedAndRemoveUntil(Home.id, (r) => false)),
         ],
       ),
-      body: SingleChildScrollView(child: this.body),
+      body: BlocProvider(
+          create: (context) => CommentsBloc(RealPostRepository()),
+          child: SingleChildScrollView(child: this.body)),
     );
   }
 }

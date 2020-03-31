@@ -15,7 +15,7 @@ class CommentItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (this.post.comments == null) return;
+        if (this.post.kids == null || this.post.kids.length == 0) return;
 
         Navigator.of(context).pushNamed(
           PostComments.id,
