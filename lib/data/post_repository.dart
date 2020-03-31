@@ -54,7 +54,7 @@ class RealPostRepository implements PostRepository {
     if (response.statusCode == 200) {
       List<dynamic> ids = response.data;
       ids.length =
-      30; // TODO: Implement pagination to remove this temporary hack
+      30; // TODO: Implement pagination and remove this temporary hack
 
       return _fetchItems(ids);
     } else {
