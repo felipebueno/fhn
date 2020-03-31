@@ -25,7 +25,7 @@ class JobPosts extends StatelessWidget {
         } else if (state is JobPostsLoading) {
           return PostListUtils.buildLoadingState();
         } else if (state is JobPostsLoaded) {
-          return PostListUtils.buildLoadedState(context, state.posts);
+          return PostListUtils.buildLoadedState(context, state.posts, false);
         } else if (state is JobPostsError) {
           return PostListUtils.buildErrorState(context, state.message);
         }

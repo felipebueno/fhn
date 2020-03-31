@@ -37,7 +37,7 @@ class TopPostsBloc extends Bloc<TopPostsEvent, TopPostsState> {
         yield TopPostsError(e.toString());
       }
     } else if (event is GetMoreTopPosts) {
-//      yield TopPostsLoadingMore();
+      yield TopPostsLoadingMore();
 
       try {
         final List<Post> newPosts =

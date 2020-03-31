@@ -1,3 +1,4 @@
+import 'package:fhn/data/models/post.dart';
 import 'package:fhn/utils.dart';
 import 'package:fhn/widgets/base_bloc_consumer.dart';
 import 'package:fhn/widgets/posts/top_posts/top_posts_bloc.dart';
@@ -12,6 +13,8 @@ class TopPosts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Post> posts;
+
     return BaseBlocConsumer<TopPostsBloc, TopPostsState>(
       onReady: () => BlocProvider.of<TopPostsBloc>(context).add(GetTopPosts()),
       listener: (context, state) {
@@ -25,9 +28,12 @@ class TopPosts extends StatelessWidget {
         } else if (state is TopPostsLoading) {
           return PostListUtils.buildLoadingState();
         } else if (state is TopPostsLoaded) {
-          return PostListUtils.buildLoadedState(context, state.posts);
+          posts = state.posts;
+          return PostListUtils.buildLoadedState(context, posts, false);
         } else if (state is TopPostsError) {
           return PostListUtils.buildErrorState(context, state.message);
+        } else if (state is TopPostsLoadingMore) {
+          return PostListUtils.buildLoadedState(context, posts, true);
         }
         return Container();
       },

@@ -1,3 +1,4 @@
+import 'package:fhn/data/models/post.dart';
 import 'package:fhn/utils.dart';
 import 'package:fhn/widgets/base_bloc_consumer.dart';
 import 'package:fhn/widgets/posts/ask_posts/ask_posts_bloc.dart';
@@ -12,9 +13,10 @@ class AskPosts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Post> posts;
+
     return BaseBlocConsumer<AskPostsBloc, AskPostsState>(
-      onReady: () =>
-          BlocProvider.of<AskPostsBloc>(context).add(GetAskPosts()),
+      onReady: () => BlocProvider.of<AskPostsBloc>(context).add(GetAskPosts()),
       listener: (context, state) {
         if (state is AskPostsError) {
           Utils.showInfo(context, state.message);
@@ -26,9 +28,12 @@ class AskPosts extends StatelessWidget {
         } else if (state is AskPostsLoading) {
           return PostListUtils.buildLoadingState();
         } else if (state is AskPostsLoaded) {
-          return PostListUtils.buildLoadedState(context, state.posts);
+          posts = state.posts;
+          return PostListUtils.buildLoadedState(context, posts, false);
         } else if (state is AskPostsError) {
           return PostListUtils.buildErrorState(context, state.message);
+        } else if (state is AskPostsLoadingMore) {
+          return PostListUtils.buildLoadedState(context, posts, true);
         }
         return Container();
       },

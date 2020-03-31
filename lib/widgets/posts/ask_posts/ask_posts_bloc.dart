@@ -39,7 +39,7 @@ class AskPostsBloc extends Bloc<AskPostsEvent, AskPostsState> {
         yield AskPostsError(e.toString());
       }
     } else if (event is GetMoreAskPosts) {
-//      yield AskPostsLoadingMore();
+      yield AskPostsLoadingMore();
 
       try {
         final List<Post> newPosts =
