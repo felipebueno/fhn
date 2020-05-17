@@ -19,7 +19,15 @@ class PostListUtils {
                 Column(
                   children: posts
                       .map(
-                        (post) => PostItem(post),
+                        (post) => Column(
+                          children: <Widget>[
+                            Divider(
+                              height: 24,
+                              color: Theme.of(context).buttonColor,
+                            ),
+                            PostItem(post),
+                          ],
+                        ),
                       )
                       .toList(),
                 ),

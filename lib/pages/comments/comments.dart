@@ -21,6 +21,10 @@ class PostComments extends StatelessWidget {
         body: Column(
           children: <Widget>[
             PostItem(post, isCommentsPage: true),
+            Divider(
+              height: 24,
+              color: Theme.of(context).buttonColor,
+            ),
             Expanded(child: CommentList(post: post)),
           ],
         ),
@@ -62,8 +66,19 @@ class _CommentListState extends State<CommentList> {
               : Column(
                   children: state.comments
                       .map(
-                        (comment) => CommentItem(comment),
-                      )
+                        (comment) =>
+                        Column(
+                          children: <Widget>[
+                            CommentItem(comment),
+                            Divider(
+                              height: 24,
+                              color: Theme
+                                  .of(context)
+                                  .buttonColor,
+                            ),
+                          ],
+                        ),
+                  )
                       .toList(),
                 );
         } else if (state is CommentsError) {

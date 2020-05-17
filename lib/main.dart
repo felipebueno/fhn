@@ -48,7 +48,6 @@ AppTheme hnAppTheme() {
       accentColor: kHNOrange,
       backgroundColor: kHNBGColor,
       scaffoldBackgroundColor: kHNBGColor,
-      primaryColorLight: kHNOrange,
       buttonColor: kHNOrange,
       textTheme: TextTheme(
         subtitle1: TextStyle(color: kHNBlack, fontSize: 16),
@@ -76,7 +75,8 @@ AppTheme customDarkTheme() {
     id: 'custom_dark_theme',
     description: 'Hacker News color theme',
     data: ThemeData.dark().copyWith(
-      buttonColor: Colors.white,
+      accentColor: kHNWhite,
+      buttonColor: kHNWhite,
       tabBarTheme: TabBarTheme(
         indicator: ShapeDecoration(
           shape: UnderlineInputBorder(
