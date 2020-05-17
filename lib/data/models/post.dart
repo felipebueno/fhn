@@ -7,10 +7,10 @@ class Post extends Equatable {
   int index;
   final String by; // The username of the item's author.
   final int
-  descendants; // In the case of stories or polls, the total comment count.
+      descendants; // In the case of stories or polls, the total comment count.
   final int id; // The item's unique id.
   final List<int>
-  kids; // The ids of the item's comments, in ranked display order.
+      kids; // The ids of the item's comments, in ranked display order.
   final int score; // The story's score, or the votes for a pollopt.
   final int time; // Creation date of the item, in Unix Time.
   final String title; // My YC app: Dropbox - Throw away your USB drive

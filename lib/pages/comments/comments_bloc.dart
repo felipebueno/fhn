@@ -6,7 +6,6 @@ import 'package:fhn/data/models/post.dart';
 import 'package:fhn/data/post_repository.dart';
 
 part 'comments_event.dart';
-
 part 'comments_state.dart';
 
 class CommentsBloc extends Bloc<CommentsEvent, CommentsState> {

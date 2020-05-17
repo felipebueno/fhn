@@ -140,9 +140,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
     bool overlapsContent,
   ) =>
       Material(
-        color: Theme
-            .of(context)
-            .backgroundColor,
+        color: Theme.of(context).backgroundColor,
         child: _tabBar,
       );
 

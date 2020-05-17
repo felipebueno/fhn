@@ -20,7 +20,9 @@ class TopPostsBloc extends Bloc<TopPostsEvent, TopPostsState> {
   TopPostsState get initialState => TopPostsInitial();
 
   @override
-  Stream<TopPostsState> mapEventToState(TopPostsEvent event,) async* {
+  Stream<TopPostsState> mapEventToState(
+    TopPostsEvent event,
+  ) async* {
     if (event is GetTopPosts) {
       yield TopPostsLoading();
 

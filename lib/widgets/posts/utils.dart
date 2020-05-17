@@ -10,21 +10,21 @@ class PostListUtils {
   static Widget buildLoadingState() =>
       Center(child: CircularProgressIndicator());
 
-  static Widget buildLoadedState(BuildContext context, List<Post> posts,
-      bool isLoadingMore) =>
+  static Widget buildLoadedState(
+          BuildContext context, List<Post> posts, bool isLoadingMore) =>
       posts.length == 0
           ? Center(child: Text('No posts found'))
           : Column(
-        children: <Widget>[
-          Column(
-            children: posts
-                .map(
-                  (post) => PostItem(post),
-            )
-                .toList(),
-          ),
-          !isLoadingMore ? Container() : CircularProgressIndicator(),
-        ],
+              children: <Widget>[
+                Column(
+                  children: posts
+                      .map(
+                        (post) => PostItem(post),
+                      )
+                      .toList(),
+                ),
+                !isLoadingMore ? Container() : CircularProgressIndicator(),
+              ],
             );
 
   static Widget buildErrorState(context, String message) {

@@ -43,11 +43,10 @@ class JobPostsBloc extends Bloc<JobPostsEvent, JobPostsState> {
 
       try {
         final List<Post> newPosts =
-        await postRepository.fetchMorePosts(PostType.job, from, to);
+            await postRepository.fetchMorePosts(PostType.job, from, to);
 
         final List<Post> morePosts =
-        List<Post>.from(JobPostsLoaded(posts).posts)
-          ..addAll(newPosts);
+            List<Post>.from(JobPostsLoaded(posts).posts)..addAll(newPosts);
 
         posts = morePosts;
 

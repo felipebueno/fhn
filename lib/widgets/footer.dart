@@ -30,4 +30,3 @@ class Footer extends StatelessWidget {
     );
   }
 }
-

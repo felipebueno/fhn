@@ -60,12 +60,12 @@ class _CommentListState extends State<CommentList> {
           return state.comments == null || state.comments.length == 0
               ? Container()
               : Column(
-            children: state.comments
-                .map(
-                  (comment) => CommentItem(comment),
-            )
-                .toList(),
-          );
+                  children: state.comments
+                      .map(
+                        (comment) => CommentItem(comment),
+                      )
+                      .toList(),
+                );
         } else if (state is CommentsError) {
           return PostListUtils.buildInitialState(context);
         }

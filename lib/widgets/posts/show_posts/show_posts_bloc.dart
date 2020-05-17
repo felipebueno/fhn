@@ -43,11 +43,10 @@ class ShowPostsBloc extends Bloc<ShowPostsEvent, ShowPostsState> {
 
       try {
         final List<Post> newPosts =
-        await postRepository.fetchMorePosts(PostType.show, from, to);
+            await postRepository.fetchMorePosts(PostType.show, from, to);
 
         final List<Post> morePosts =
-        List<Post>.from(ShowPostsLoaded(posts).posts)
-          ..addAll(newPosts);
+            List<Post>.from(ShowPostsLoaded(posts).posts)..addAll(newPosts);
 
         posts = morePosts;
 

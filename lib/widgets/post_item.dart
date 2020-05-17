@@ -8,7 +8,8 @@ class PostItem extends StatelessWidget {
   final Post post;
   final bool isCommentsPage;
 
-  const PostItem(this.post, {
+  const PostItem(
+    this.post, {
     Key key,
     this.isCommentsPage = false,
   }) : super(key: key);
@@ -21,13 +22,13 @@ class PostItem extends StatelessWidget {
     return InkWell(
       onTap: this.isCommentsPage || this.post.type == 'job'
           ? () {
-              if (this.post.url == null) return;
+        if (this.post.url == null) return;
 
-              Utils.launchURL(this.post.url);
-            }
+        Utils.launchURL(this.post.url);
+      }
           : () {
-              Navigator.of(context).pushNamed(
-                PostComments.id,
+        Navigator.of(context).pushNamed(
+          PostComments.id,
           arguments: this.post,
         );
       },
@@ -53,8 +54,7 @@ class PostItem extends StatelessWidget {
                 children: <Widget>[
                   Html(
                     data: '${this.post.title ?? this.post.text} ',
-                    defaultTextStyle:
-                    subtitle1,
+                    defaultTextStyle: subtitle1,
                     onLinkTap: (url) {
                       Utils.launchURL(url);
                     },

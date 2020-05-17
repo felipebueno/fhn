@@ -43,11 +43,10 @@ class AskPostsBloc extends Bloc<AskPostsEvent, AskPostsState> {
 
       try {
         final List<Post> newPosts =
-        await postRepository.fetchMorePosts(PostType.ask, from, to);
+            await postRepository.fetchMorePosts(PostType.ask, from, to);
 
         final List<Post> morePosts =
-        List<Post>.from(AskPostsLoaded(posts).posts)
-          ..addAll(newPosts);
+            List<Post>.from(AskPostsLoaded(posts).posts)..addAll(newPosts);
 
         posts = morePosts;
 

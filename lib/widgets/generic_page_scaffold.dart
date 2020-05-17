@@ -22,9 +22,8 @@ class GenericPageScaffold extends StatelessWidget {
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.home),
-              onPressed: () =>
-                  Navigator.of(context)
-                      .pushNamedAndRemoveUntil(Home.id, (r) => false)),
+              onPressed: () => Navigator.of(context)
+                  .pushNamedAndRemoveUntil(Home.id, (r) => false)),
         ],
       ),
       body: BlocProvider(
