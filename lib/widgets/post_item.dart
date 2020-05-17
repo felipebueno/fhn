@@ -1,4 +1,3 @@
-import 'package:fhn/constants.dart';
 import 'package:fhn/data/models/post.dart';
 import 'package:fhn/pages/comments/comments.dart';
 import 'package:fhn/utils.dart';
@@ -16,16 +15,19 @@ class PostItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextStyle subtitle1 = Theme.of(context).textTheme.subtitle1;
+    final TextStyle subtitle2 = Theme.of(context).textTheme.subtitle2;
+
     return InkWell(
       onTap: this.isCommentsPage || this.post.type == 'job'
           ? () {
-        if (this.post.url == null) return;
+              if (this.post.url == null) return;
 
-        Utils.launchURL(this.post.url);
-      }
+              Utils.launchURL(this.post.url);
+            }
           : () {
-        Navigator.of(context).pushNamed(
-          PostComments.id,
+              Navigator.of(context).pushNamed(
+                PostComments.id,
           arguments: this.post,
         );
       },
@@ -52,7 +54,7 @@ class PostItem extends StatelessWidget {
                   Html(
                     data: '${this.post.title ?? this.post.text} ',
                     defaultTextStyle:
-                    TextStyle(color: Colors.black, fontSize: 16),
+                    subtitle1,
                     onLinkTap: (url) {
                       Utils.launchURL(url);
                     },
@@ -64,15 +66,15 @@ class PostItem extends StatelessWidget {
                       children: <TextSpan>[
                         TextSpan(
                           text: '(',
-                          style: TextStyle(color: kHNGrey),
+                          style: subtitle2,
                         ),
                         TextSpan(
                           text: '${this.post.host}',
-                          style: TextStyle(color: kHNGrey),
+                          style: subtitle2,
                         ),
                         TextSpan(
                           text: ')',
-                          style: TextStyle(color: kHNGrey),
+                          style: subtitle2,
                         ),
                       ],
                     ),
@@ -85,17 +87,17 @@ class PostItem extends StatelessWidget {
                             ? TextSpan()
                             : TextSpan(
                           text: '${this.post.score} points by ',
-                          style: TextStyle(color: kHNGrey),
+                          style: subtitle2,
                         ),
                         this.post.type == 'job'
                             ? TextSpan()
                             : TextSpan(
                           text: '${this.post.by}',
-                          style: TextStyle(color: kHNGrey),
+                          style: subtitle2,
                         ),
                         TextSpan(
                           text: ' ${this.post.timeAgo}',
-                          style: TextStyle(color: kHNGrey),
+                          style: subtitle2,
                         ),
                         this.post.type != 'story'
                             ? TextSpan()
@@ -103,7 +105,7 @@ class PostItem extends StatelessWidget {
                           text: this.post.kids == null
                               ? ''
                               : ' | ${this.post.kids.length} comments',
-                          style: TextStyle(color: kHNGrey),
+                          style: subtitle2,
                         ),
                       ],
                     ),

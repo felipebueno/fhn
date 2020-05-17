@@ -1,4 +1,3 @@
-import 'package:fhn/constants.dart';
 import 'package:fhn/data/models/post.dart';
 import 'package:fhn/pages/comments/comments.dart';
 import 'package:fhn/utils.dart';
@@ -15,6 +14,9 @@ class CommentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextStyle subtitle1 = Theme.of(context).textTheme.subtitle1;
+    final TextStyle subtitle2 = Theme.of(context).textTheme.subtitle2;
+
     return InkWell(
       onTap: () {
         if (this.post.kids == null || this.post.kids.length == 0) return;
@@ -36,7 +38,7 @@ class CommentItem extends StatelessWidget {
           children: <Widget>[
             Html(
               data: '${this.post.text ?? 'DELETED'} ',
-              defaultTextStyle: TextStyle(color: Colors.black, fontSize: 16),
+              defaultTextStyle: subtitle1,
               onLinkTap: (url) {
                 Utils.launchURL(url);
               },
@@ -47,17 +49,17 @@ class CommentItem extends StatelessWidget {
                 children: <TextSpan>[
                   TextSpan(
                     text: '${this.post.by ?? 'deleted'}',
-                    style: TextStyle(color: kHNGrey),
+                    style: subtitle2,
                   ),
                   TextSpan(
                     text: ' ${this.post.timeAgo}',
-                    style: TextStyle(color: kHNGrey),
+                    style: subtitle2,
                   ),
                   TextSpan(
                     text: this.post.kids == null
                         ? ''
                         : ' | ${this.post.kids.length} comments',
-                    style: TextStyle(color: kHNGrey),
+                    style: subtitle2,
                   ),
                 ],
               ),

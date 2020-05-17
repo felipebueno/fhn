@@ -1,4 +1,3 @@
-import 'package:fhn/constants.dart';
 import 'package:fhn/data/post_repository.dart';
 import 'package:fhn/pages/comments/comments_bloc.dart';
 import 'package:fhn/pages/home.dart';
@@ -18,7 +17,6 @@ class GenericPageScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kHNBGColor,
       appBar: AppBar(
         title: Text(this.title),
         actions: <Widget>[
