@@ -61,11 +61,11 @@ class _BaseTabState<TBloc extends Bloc<dynamic, dynamic>>
                     child: Container(
                       width: double.infinity,
                       child: OutlineButton(
-                        textColor: Theme.of(context).primaryColor,
+                        textColor: Theme.of(context).buttonColor,
                         child: Text('MORE'),
                         borderSide: BorderSide(
                           width: 1.0,
-                          color: Theme.of(context).primaryColor,
+                          color: Theme.of(context).buttonColor,
                         ),
                         onPressed: () {
                           _blocProvider.add(widget.onMoreTap);

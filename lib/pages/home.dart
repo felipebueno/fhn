@@ -1,6 +1,5 @@
 import 'package:fhn/data/post_repository.dart';
 import 'package:fhn/widgets/base_tab.dart';
-import 'package:fhn/widgets/icon_text.dart';
 import 'package:fhn/widgets/posts/ask_posts/ask_posts.dart';
 import 'package:fhn/widgets/posts/ask_posts/ask_posts_bloc.dart';
 import 'package:fhn/widgets/posts/job_posts/job_posts.dart';
@@ -11,7 +10,6 @@ import 'package:fhn/widgets/posts/top_posts/top_posts.dart';
 import 'package:fhn/widgets/posts/top_posts/top_posts_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:theme_provider/theme_provider.dart';
 
 class Home extends StatelessWidget {
   static const String id = 'home';
@@ -48,7 +46,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isHNTheme = ThemeProvider.themeOf(context).id == 'hn_theme';
+//    final bool isHNTheme = ThemeProvider.themeOf(context).id == 'hn_theme';
 
     return Scaffold(
       body: DefaultTabController(
@@ -61,23 +59,23 @@ class Home extends StatelessWidget {
                 floating: false,
                 pinned: true,
                 actions: <Widget>[
-                  PopupMenuButton<String>(
-                    onCanceled: () {},
-                    onSelected: (value) {
-                      ThemeProvider.controllerOf(context).nextTheme();
-                    },
-                    itemBuilder: (BuildContext context) {
-                      return ['${isHNTheme ? 'Dark' : 'Light'} theme'].map((
-                          String choice) {
-                        return PopupMenuItem<String>(
-                          value: choice,
-                          child: IconText(
-                              icon: isHNTheme ? Icons.brightness_4 : Icons
-                                  .wb_sunny, text: choice),
-                        );
-                      }).toList();
-                    },
-                  ),
+//                  PopupMenuButton<String>(
+//                    onCanceled: () {},
+//                    onSelected: (value) {
+//                      ThemeProvider.controllerOf(context).nextTheme();
+//                    },
+//                    itemBuilder: (BuildContext context) {
+//                      return ['${isHNTheme ? 'Dark' : 'Light'} theme'].map((
+//                          String choice) {
+//                        return PopupMenuItem<String>(
+//                          value: choice,
+//                          child: IconText(
+//                              icon: isHNTheme ? Icons.brightness_4 : Icons
+//                                  .wb_sunny, text: choice),
+//                        );
+//                      }).toList();
+//                    },
+//                  ),
                 ],
                 flexibleSpace: FlexibleSpaceBar(
                   centerTitle: true,

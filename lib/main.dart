@@ -19,13 +19,15 @@ class App extends StatelessWidget {
       loadThemeOnInit: true,
       themes: <AppTheme>[
         hnAppTheme(),
-        AppTheme.dark(),
+        customDarkTheme(),
       ],
       child: ThemeConsumer(
         child: Builder(
           builder: (themeContext) => MaterialApp(
             title: 'fHN',
-            theme: Theme.of(themeContext),
+            themeMode: ThemeMode.system,
+            darkTheme: customDarkTheme().data,
+            theme: hnAppTheme().data,
             initialRoute: Home.id,
             routes: Router.routes,
             home: Home(),
@@ -46,8 +48,8 @@ AppTheme hnAppTheme() {
       accentColor: kHNOrange,
       backgroundColor: kHNBGColor,
       scaffoldBackgroundColor: kHNBGColor,
-      buttonColor: kHNOrange,
       primaryColorLight: kHNOrange,
+      buttonColor: kHNOrange,
       textTheme: TextTheme(
         subtitle1: TextStyle(color: kHNBlack, fontSize: 16),
         subtitle2: TextStyle(color: kHNGrey),
@@ -64,6 +66,27 @@ AppTheme hnAppTheme() {
         ),
         labelColor: kHNOrange,
         unselectedLabelColor: kHNGrey,
+      ),
+    ),
+  );
+}
+
+AppTheme customDarkTheme() {
+  return AppTheme(
+    id: 'custom_dark_theme',
+    description: 'Hacker News color theme',
+    data: ThemeData.dark().copyWith(
+      buttonColor: Colors.white,
+      tabBarTheme: TabBarTheme(
+        indicator: ShapeDecoration(
+          shape: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: kHNWhite,
+              width: 4,
+              style: BorderStyle.solid,
+            ),
+          ),
+        ),
       ),
     ),
   );
