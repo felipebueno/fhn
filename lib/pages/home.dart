@@ -11,6 +11,7 @@ import 'package:fhn/widgets/posts/top_posts/top_posts.dart';
 import 'package:fhn/widgets/posts/top_posts/top_posts_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 class Home extends StatelessWidget {
   static const String id = 'home';
@@ -59,6 +60,21 @@ class Home extends StatelessWidget {
                 expandedHeight: 200.0,
                 floating: false,
                 pinned: true,
+                actions: <Widget>[
+                  PopupMenuButton<String>(
+                    onSelected: (value) {
+                      ThemeProvider.controllerOf(context).nextTheme();
+                    },
+                    itemBuilder: (BuildContext context) {
+                      return ['Change theme'].map((String choice) {
+                        return PopupMenuItem<String>(
+                          value: choice,
+                          child: Text(choice),
+                        );
+                      }).toList();
+                    },
+                  ),
+                ],
                 flexibleSpace: FlexibleSpaceBar(
                   centerTitle: true,
                   title: Text(
@@ -123,9 +139,11 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => _tabBar.preferredSize.height;
 
   @override
-  Widget build(BuildContext context,
-      double shrinkOffset,
-      bool overlapsContent,) =>
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) =>
       Material(
         color: kHNBGColor,
         child: _tabBar,
