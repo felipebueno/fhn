@@ -40,3 +40,5 @@ I started this project to learn the basics of the BLoC pattern. Today, this app 
 - Up/down voting
 
 - Hacker Typer theme
+
+- iOS release
