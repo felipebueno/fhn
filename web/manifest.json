@@ -1,6 +1,6 @@
 {
     "name": "fhn",
-    "short_name": "fhn",
+    "short_name": "Hacker News",
     "start_url": ".",
     "display": "minimal-ui",
     "background_color": "#0175C2",

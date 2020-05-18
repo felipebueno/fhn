@@ -24,7 +24,7 @@ class App extends StatelessWidget {
       child: ThemeConsumer(
         child: Builder(
           builder: (themeContext) => MaterialApp(
-            title: 'fHN',
+            title: 'Hacker News',
             themeMode: ThemeMode.system,
             darkTheme: customDarkTheme().data,
             theme: hnAppTheme().data,

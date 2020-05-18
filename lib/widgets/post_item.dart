@@ -44,8 +44,9 @@ class PostItem extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 8.0),
                 child: Text(
                   '${this.post.index}.',
-                  textAlign: TextAlign.end,
-                ),
+                        textAlign: TextAlign.end,
+                        style: subtitle2,
+                      ),
               ),
             ),
             Flexible(
