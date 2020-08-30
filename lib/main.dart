@@ -1,6 +1,6 @@
 import 'package:fhn/constants.dart';
 import 'package:fhn/pages/home.dart';
-import 'package:fhn/router.dart';
+import 'package:fhn/hn_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -29,7 +29,7 @@ class App extends StatelessWidget {
             darkTheme: customDarkTheme().data,
             theme: hnAppTheme().data,
             initialRoute: Home.id,
-            routes: Router.routes,
+            routes: HNRouter.routes,
             home: Home(),
           ),
         ),
