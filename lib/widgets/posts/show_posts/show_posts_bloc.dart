@@ -14,10 +14,8 @@ class ShowPostsBloc extends Bloc<ShowPostsEvent, ShowPostsState> {
   int from = 30;
   int to = 60;
 
-  ShowPostsBloc(this.postRepository);
-
-  @override
-  ShowPostsState get initialState => ShowPostsInitial();
+  ShowPostsBloc(ShowPostsState initialState, this.postRepository)
+      : super(initialState);
 
   @override
   Stream<ShowPostsState> mapEventToState(

@@ -14,10 +14,8 @@ class JobPostsBloc extends Bloc<JobPostsEvent, JobPostsState> {
   int from = 30;
   int to = 60;
 
-  JobPostsBloc(this.postRepository);
-
-  @override
-  JobPostsState get initialState => JobPostsInitial();
+  JobPostsBloc(JobPostsState initialState, this.postRepository)
+      : super(initialState);
 
   @override
   Stream<JobPostsState> mapEventToState(

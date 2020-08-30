@@ -15,7 +15,10 @@ class PostComments extends StatelessWidget {
   Widget build(BuildContext context) {
     final Post post = ModalRoute.of(context).settings.arguments;
     return BlocProvider(
-      create: (context) => CommentsBloc(RealPostRepository()),
+      create: (context) => CommentsBloc(
+        CommentsInitial(),
+        RealPostRepository(),
+      ),
       child: GenericPageScaffold(
         title: 'Comments',
         body: Column(
@@ -66,19 +69,16 @@ class _CommentListState extends State<CommentList> {
               : Column(
                   children: state.comments
                       .map(
-                        (comment) =>
-                        Column(
+                        (comment) => Column(
                           children: <Widget>[
                             CommentItem(comment),
                             Divider(
                               height: 24,
-                              color: Theme
-                                  .of(context)
-                                  .buttonColor,
+                              color: Theme.of(context).buttonColor,
                             ),
                           ],
                         ),
-                  )
+                      )
                       .toList(),
                 );
         } else if (state is CommentsError) {

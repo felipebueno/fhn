@@ -27,15 +27,17 @@ class GenericPageScaffold extends StatelessWidget {
         ],
       ),
       body: BlocProvider(
-        create: (context) => CommentsBloc(RealPostRepository()),
+        create: (context) => CommentsBloc(
+          CommentsInitial(),
+          RealPostRepository(),
+        ),
         child: LayoutBuilder(
-          builder: (context, constraint) =>
-              SingleChildScrollView(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(minHeight: constraint.maxHeight),
-                  child: IntrinsicHeight(child: this.body),
-                ),
-              ),
+          builder: (context, constraint) => SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraint.maxHeight),
+              child: IntrinsicHeight(child: this.body),
+            ),
+          ),
         ),
       ),
     );

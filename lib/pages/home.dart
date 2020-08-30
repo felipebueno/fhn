@@ -100,16 +100,20 @@ class Home extends StatelessWidget {
           body: MultiBlocProvider(
             providers: [
               BlocProvider(
-                create: (context) => TopPostsBloc(RealPostRepository()),
+                create: (context) =>
+                    TopPostsBloc(TopPostsInitial(), RealPostRepository()),
               ),
               BlocProvider(
-                create: (context) => AskPostsBloc(RealPostRepository()),
+                create: (context) =>
+                    AskPostsBloc(AskPostsInitial(), RealPostRepository()),
               ),
               BlocProvider(
-                create: (context) => ShowPostsBloc(RealPostRepository()),
+                create: (context) =>
+                    ShowPostsBloc(ShowPostsInitial(), RealPostRepository()),
               ),
               BlocProvider(
-                create: (context) => JobPostsBloc(RealPostRepository()),
+                create: (context) =>
+                    JobPostsBloc(JobPostsInitial(), RealPostRepository()),
               ),
             ],
             child: TabBarView(

@@ -14,10 +14,8 @@ class TopPostsBloc extends Bloc<TopPostsEvent, TopPostsState> {
   int from = 30;
   int to = 60;
 
-  TopPostsBloc(this.postRepository);
-
-  @override
-  TopPostsState get initialState => TopPostsInitial();
+  TopPostsBloc(TopPostsState initialState, this.postRepository)
+      : super(initialState);
 
   @override
   Stream<TopPostsState> mapEventToState(
@@ -43,11 +41,10 @@ class TopPostsBloc extends Bloc<TopPostsEvent, TopPostsState> {
 
       try {
         final List<Post> newPosts =
-        await postRepository.fetchMorePosts(PostType.top, from, to);
+            await postRepository.fetchMorePosts(PostType.top, from, to);
 
         final List<Post> morePosts =
-        List<Post>.from(TopPostsLoaded(posts).posts)
-          ..addAll(newPosts);
+            List<Post>.from(TopPostsLoaded(posts).posts)..addAll(newPosts);
 
         posts = morePosts;
 

@@ -14,10 +14,8 @@ class AskPostsBloc extends Bloc<AskPostsEvent, AskPostsState> {
   int from = 30;
   int to = 60;
 
-  AskPostsBloc(this.postRepository);
-
-  @override
-  AskPostsState get initialState => AskPostsInitial();
+  AskPostsBloc(AskPostsState initialState, this.postRepository)
+      : super(initialState);
 
   @override
   Stream<AskPostsState> mapEventToState(

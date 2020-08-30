@@ -11,10 +11,8 @@ part 'comments_state.dart';
 class CommentsBloc extends Bloc<CommentsEvent, CommentsState> {
   final PostRepository postRepository;
 
-  CommentsBloc(this.postRepository);
-
-  @override
-  CommentsState get initialState => CommentsInitial();
+  CommentsBloc(CommentsState initialState, this.postRepository)
+      : super(initialState);
 
   @override
   Stream<CommentsState> mapEventToState(
