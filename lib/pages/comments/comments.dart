@@ -26,7 +26,7 @@ class PostComments extends StatelessWidget {
             PostItem(post, isCommentsPage: true),
             Divider(
               height: 24,
-              color: Theme.of(context).buttonColor,
+              color: Theme.of(context).dividerColor,
             ),
             Expanded(child: CommentList(post: post)),
           ],
@@ -74,7 +74,7 @@ class _CommentListState extends State<CommentList> {
                             CommentItem(comment),
                             Divider(
                               height: 24,
-                              color: Theme.of(context).buttonColor,
+                              color: Theme.of(context).dividerColor,
                             ),
                           ],
                         ),

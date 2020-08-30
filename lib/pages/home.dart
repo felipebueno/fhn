@@ -14,13 +14,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class Home extends StatelessWidget {
   static const String id = 'home';
 
-  final List<Tab> tabs = [
-    Tab(icon: Icon(Icons.new_releases), text: "Top"),
-    Tab(icon: Icon(Icons.question_answer), text: "Ask"),
-    Tab(icon: Icon(Icons.show_chart), text: "Show"),
-    Tab(icon: Icon(Icons.work), text: "Jobs"),
-  ];
-
   final List<Widget> tabViews = [
     BaseTab<TopPostsBloc>(
       body: TopPosts(),
@@ -47,10 +40,27 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 //    final bool isHNTheme = ThemeProvider.themeOf(context).id == 'hn_theme';
+    final List<Tab> tabs = [
+      Tab(
+          icon: Icon(Icons.new_releases,
+              color: Theme.of(context).iconTheme.color),
+          text: "Top"),
+      Tab(
+          icon: Icon(Icons.question_answer,
+              color: Theme.of(context).iconTheme.color),
+          text: "Ask"),
+      Tab(
+          icon:
+              Icon(Icons.show_chart, color: Theme.of(context).iconTheme.color),
+          text: "Show"),
+      Tab(
+          icon: Icon(Icons.work, color: Theme.of(context).iconTheme.color),
+          text: "Jobs"),
+    ];
 
     return Scaffold(
       body: DefaultTabController(
-        length: this.tabs.length,
+        length: tabs.length,
         child: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
@@ -81,16 +91,16 @@ class Home extends StatelessWidget {
                   centerTitle: true,
                   title: Text(
                     'Hacker News',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.headline5.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                 ),
               ),
               SliverPersistentHeader(
                 delegate: _SliverAppBarDelegate(
                   TabBar(
-                    tabs: this.tabs,
+                    tabs: tabs,
                   ),
                 ),
                 pinned: true,

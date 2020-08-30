@@ -23,7 +23,7 @@ class PostListUtils {
                           children: <Widget>[
                             Divider(
                               height: 24,
-                              color: Theme.of(context).buttonColor,
+                              color: Theme.of(context).dividerColor,
                             ),
                             PostItem(post),
                           ],

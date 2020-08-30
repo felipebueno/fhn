@@ -22,16 +22,16 @@ class PostItem extends StatelessWidget {
     return InkWell(
       onTap: this.isCommentsPage || this.post.type == 'job'
           ? () {
-        if (this.post.url == null) return;
+              if (this.post.url == null) return;
 
-        Utils.launchURL(this.post.url);
-      }
+              Utils.launchURL(this.post.url);
+            }
           : () {
-        Navigator.of(context).pushNamed(
-          PostComments.id,
-          arguments: this.post,
-        );
-      },
+              Navigator.of(context).pushNamed(
+                PostComments.id,
+                arguments: this.post,
+              );
+            },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
@@ -39,16 +39,16 @@ class PostItem extends StatelessWidget {
             this.isCommentsPage || this.post.type == 'job'
                 ? Container()
                 : Container(
-              width: 32.0,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: Text(
-                  '${this.post.index}.',
+                    width: 32.0,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: Text(
+                        '${this.post.index}.',
                         textAlign: TextAlign.end,
                         style: subtitle2,
                       ),
-              ),
-            ),
+                    ),
+                  ),
             Flexible(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,23 +63,23 @@ class PostItem extends StatelessWidget {
                   this.post.url == null
                       ? Container()
                       : RichText(
-                    text: TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: '(',
-                          style: subtitle2,
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: '(',
+                                style: subtitle2,
+                              ),
+                              TextSpan(
+                                text: '${this.post.host}',
+                                style: subtitle2,
+                              ),
+                              TextSpan(
+                                text: ')',
+                                style: subtitle2,
+                              ),
+                            ],
+                          ),
                         ),
-                        TextSpan(
-                          text: '${this.post.host}',
-                          style: subtitle2,
-                        ),
-                        TextSpan(
-                          text: ')',
-                          style: subtitle2,
-                        ),
-                      ],
-                    ),
-                  ),
                   SizedBox(height: 8.0),
                   RichText(
                     text: TextSpan(
@@ -87,15 +87,15 @@ class PostItem extends StatelessWidget {
                         this.post.type != 'story'
                             ? TextSpan()
                             : TextSpan(
-                          text: '${this.post.score} points by ',
-                          style: subtitle2,
-                        ),
+                                text: '${this.post.score} points by ',
+                                style: subtitle2,
+                              ),
                         this.post.type == 'job'
                             ? TextSpan()
                             : TextSpan(
-                          text: '${this.post.by}',
-                          style: subtitle2,
-                        ),
+                                text: '${this.post.by}',
+                                style: subtitle2,
+                              ),
                         TextSpan(
                           text: ' ${this.post.timeAgo}',
                           style: subtitle2,
@@ -103,11 +103,11 @@ class PostItem extends StatelessWidget {
                         this.post.type != 'story'
                             ? TextSpan()
                             : TextSpan(
-                          text: this.post.kids == null
-                              ? ''
-                              : ' | ${this.post.kids.length} comments',
-                          style: subtitle2,
-                        ),
+                                text: this.post.kids == null
+                                    ? ''
+                                    : ' | ${this.post.kids.length} comments',
+                                style: subtitle2,
+                              ),
                       ],
                     ),
                   ),
