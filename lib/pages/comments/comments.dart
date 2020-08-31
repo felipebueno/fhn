@@ -1,4 +1,3 @@
-import 'package:fhn/data/models/post.dart';
 import 'package:fhn/data/post_repository.dart';
 import 'package:fhn/pages/comments/comments_bloc.dart';
 import 'package:fhn/widgets/comment_item.dart';
@@ -7,23 +6,24 @@ import 'package:fhn/widgets/post_item.dart';
 import 'package:fhn/widgets/posts/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hnpwa_client/hnpwa_client.dart';
 
 class PostComments extends StatelessWidget {
   static const String id = 'comments';
 
   @override
   Widget build(BuildContext context) {
-    final Post post = ModalRoute.of(context).settings.arguments;
+    final FeedItem post = ModalRoute.of(context).settings.arguments;
     return BlocProvider(
       create: (context) => CommentsBloc(
         CommentsInitial(),
-        RealPostRepository(),
+        PostRepository(),
       ),
       child: GenericPageScaffold(
         title: 'Comments',
         body: Column(
           children: <Widget>[
-            PostItem(post, isCommentsPage: true),
+            PostItem(0, post, isCommentsPage: true),
             Divider(
               height: 24,
               color: Theme.of(context).buttonColor,
@@ -37,12 +37,11 @@ class PostComments extends StatelessWidget {
 }
 
 class CommentList extends StatefulWidget {
+  final FeedItem post;
   const CommentList({
     Key key,
     @required this.post,
   }) : super(key: key);
-
-  final Post post;
 
   @override
   _CommentListState createState() => _CommentListState();

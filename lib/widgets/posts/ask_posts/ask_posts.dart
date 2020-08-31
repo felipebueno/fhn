@@ -1,10 +1,10 @@
-import 'package:fhn/data/models/post.dart';
 import 'package:fhn/utils.dart';
 import 'package:fhn/widgets/base_bloc_consumer.dart';
 import 'package:fhn/widgets/posts/ask_posts/ask_posts_bloc.dart';
 import 'package:fhn/widgets/posts/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hnpwa_client/hnpwa_client.dart';
 
 class AskPosts extends StatelessWidget {
   const AskPosts({
@@ -13,7 +13,7 @@ class AskPosts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Post> posts;
+    List<FeedItem> posts;
 
     return BaseBlocConsumer<AskPostsBloc, AskPostsState>(
       onReady: () => BlocProvider.of<AskPostsBloc>(context).add(GetAskPosts()),

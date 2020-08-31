@@ -17,7 +17,7 @@ class AskPostsLoading extends AskPostsState {
 }
 
 class AskPostsLoaded extends AskPostsState {
-  final List<Post> posts;
+  final List<FeedItem> posts;
 
   const AskPostsLoaded(this.posts);
 

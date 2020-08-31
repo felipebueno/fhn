@@ -2,14 +2,14 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:fhn/data/models/post.dart';
 import 'package:fhn/data/post_repository.dart';
+import 'package:hnpwa_client/hnpwa_client.dart';
 
 part 'comments_event.dart';
 part 'comments_state.dart';
 
 class CommentsBloc extends Bloc<CommentsEvent, CommentsState> {
-  final PostRepository postRepository;
+  final IPostRepository postRepository;
 
   CommentsBloc(CommentsState initialState, this.postRepository)
       : super(initialState);

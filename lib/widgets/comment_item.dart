@@ -1,11 +1,11 @@
-import 'package:fhn/data/models/post.dart';
 import 'package:fhn/pages/comments/comments.dart';
 import 'package:fhn/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:hnpwa_client/hnpwa_client.dart';
 
 class CommentItem extends StatelessWidget {
-  final Post post;
+  final Item post;
 
   const CommentItem(
     this.post, {
@@ -19,7 +19,8 @@ class CommentItem extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        if (this.post.kids == null || this.post.kids.length == 0) return;
+        if (this.post.comments == null || this.post.comments.length == 0)
+          return;
 
         Navigator.of(context).pushNamed(
           PostComments.id,
@@ -37,7 +38,7 @@ class CommentItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Html(
-              data: '${this.post.text ?? 'DELETED'} ',
+              data: '${this.post.content} ',
               defaultTextStyle: subtitle1,
               onLinkTap: (url) {
                 Utils.launchURL(url);
@@ -48,7 +49,7 @@ class CommentItem extends StatelessWidget {
               text: TextSpan(
                 children: <TextSpan>[
                   TextSpan(
-                    text: '${this.post.by ?? 'deleted'}',
+                    text: '${this.post.user}',
                     style: subtitle2,
                   ),
                   TextSpan(
@@ -56,9 +57,10 @@ class CommentItem extends StatelessWidget {
                     style: subtitle2,
                   ),
                   TextSpan(
-                    text: this.post.kids == null
+                    text: (this.post.comments == null ||
+                            this.post.comments.length == 0)
                         ? ''
-                        : ' | ${this.post.kids.length} comments',
+                        : ' | ${this.post.comments.length} comments',
                     style: subtitle2,
                   ),
                 ],

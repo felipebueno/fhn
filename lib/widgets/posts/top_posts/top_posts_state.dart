@@ -17,7 +17,7 @@ class TopPostsLoading extends TopPostsState {
 }
 
 class TopPostsLoaded extends TopPostsState {
-  final List<Post> posts;
+  final List<FeedItem> posts;
 
   const TopPostsLoaded(this.posts);
 

@@ -17,7 +17,7 @@ class ShowPostsLoading extends ShowPostsState {
 }
 
 class ShowPostsLoaded extends ShowPostsState {
-  final List<Post> posts;
+  final List<FeedItem> posts;
 
   const ShowPostsLoaded(this.posts);
 

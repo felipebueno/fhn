@@ -2,17 +2,16 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:fhn/data/models/post.dart';
 import 'package:fhn/data/post_repository.dart';
+import 'package:hnpwa_client/hnpwa_client.dart';
 
 part 'job_posts_event.dart';
 part 'job_posts_state.dart';
 
 class JobPostsBloc extends Bloc<JobPostsEvent, JobPostsState> {
-  final PostRepository postRepository;
-  List<Post> posts;
-  int from = 30;
-  int to = 60;
+  final IPostRepository postRepository;
+  List<FeedItem> posts;
+  int page = 1;
 
   JobPostsBloc(JobPostsState initialState, this.postRepository)
       : super(initialState);
@@ -24,8 +23,7 @@ class JobPostsBloc extends Bloc<JobPostsEvent, JobPostsState> {
     if (event is GetJobPosts) {
       yield JobPostsLoading();
 
-      from = 30;
-      to = 60;
+      page = 1;
 
       try {
         posts = await postRepository.fetchPosts(PostType.job);
@@ -40,16 +38,13 @@ class JobPostsBloc extends Bloc<JobPostsEvent, JobPostsState> {
       yield JobPostsLoadingMore();
 
       try {
-        final List<Post> newPosts =
-            await postRepository.fetchMorePosts(PostType.job, from, to);
+        final List<FeedItem> newPosts =
+            await postRepository.fetchMorePosts(PostType.job, ++page);
 
-        final List<Post> morePosts =
-            List<Post>.from(JobPostsLoaded(posts).posts)..addAll(newPosts);
+        final List<FeedItem> morePosts =
+            List<FeedItem>.from(JobPostsLoaded(posts).posts)..addAll(newPosts);
 
         posts = morePosts;
-
-        from += 30;
-        to += 30;
 
         yield JobPostsLoaded(posts);
       } on NetworkError {

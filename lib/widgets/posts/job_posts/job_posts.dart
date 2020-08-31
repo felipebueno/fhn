@@ -1,10 +1,10 @@
-import 'package:fhn/data/models/post.dart';
 import 'package:fhn/utils.dart';
 import 'package:fhn/widgets/base_bloc_consumer.dart';
 import 'package:fhn/widgets/posts/job_posts/job_posts_bloc.dart';
 import 'package:fhn/widgets/posts/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hnpwa_client/hnpwa_client.dart';
 
 class JobPosts extends StatelessWidget {
   const JobPosts({
@@ -13,7 +13,7 @@ class JobPosts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Post> posts;
+    List<FeedItem> posts;
 
     return BaseBlocConsumer<JobPostsBloc, JobPostsState>(
       onReady: () => BlocProvider.of<JobPostsBloc>(context).add(GetJobPosts()),
@@ -29,11 +29,13 @@ class JobPosts extends StatelessWidget {
           return PostListUtils.buildLoadingState();
         } else if (state is JobPostsLoaded) {
           posts = state.posts;
-          return PostListUtils.buildLoadedState(context, posts, false);
+          return PostListUtils.buildLoadedState(context, posts, false,
+              isJobPage: true);
         } else if (state is JobPostsError) {
           return PostListUtils.buildErrorState(context, state.message);
         } else if (state is JobPostsLoadingMore) {
-          return PostListUtils.buildLoadedState(context, posts, true);
+          return PostListUtils.buildLoadedState(context, posts, true,
+              isJobPage: true);
         }
         return Container();
       },

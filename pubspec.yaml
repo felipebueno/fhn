@@ -29,6 +29,8 @@ dependencies:
   social_media_buttons: ^0.1.2
   pull_to_refresh: ^1.6.1
   theme_provider: ^0.4.0+1
+  hnpwa_client: ^2.0.0
+
 
 dev_dependencies:
   flutter_test:

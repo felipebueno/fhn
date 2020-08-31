@@ -1,6 +1,6 @@
-import 'package:fhn/data/models/post.dart';
 import 'package:fhn/widgets/post_item.dart';
 import 'package:flutter/material.dart';
+import 'package:hnpwa_client/hnpwa_client.dart';
 
 class PostListUtils {
   static Widget buildInitialState(context) {
@@ -11,29 +11,37 @@ class PostListUtils {
       Center(child: CircularProgressIndicator());
 
   static Widget buildLoadedState(
-          BuildContext context, List<Post> posts, bool isLoadingMore) =>
-      posts.length == 0
-          ? Center(child: Text('No posts found'))
-          : Column(
-              children: <Widget>[
-                Column(
-                  children: posts
-                      .map(
-                        (post) => Column(
-                          children: <Widget>[
-                            Divider(
-                              height: 24,
-                              color: Theme.of(context).buttonColor,
-                            ),
-                            PostItem(post),
-                          ],
-                        ),
-                      )
-                      .toList(),
-                ),
-                !isLoadingMore ? Container() : CircularProgressIndicator(),
-              ],
-            );
+      BuildContext context, List<FeedItem> posts, bool isLoadingMore,
+      {bool isJobPage = false}) {
+    return posts == null || posts.length == 0
+        ? Center(child: Text('No posts found'))
+        : Column(
+            children: <Widget>[
+              Column(
+                children: posts
+                    .asMap()
+                    .entries
+                    .map(
+                      (post) => Column(
+                        children: <Widget>[
+                          Divider(
+                            height: 24,
+                            color: Theme.of(context).buttonColor,
+                          ),
+                          PostItem(
+                            post.key + 1,
+                            post.value,
+                            isJobPage: isJobPage,
+                          ),
+                        ],
+                      ),
+                    )
+                    .toList(),
+              ),
+              !isLoadingMore ? Container() : CircularProgressIndicator(),
+            ],
+          );
+  }
 
   static Widget buildErrorState(context, String message) {
     return Center(

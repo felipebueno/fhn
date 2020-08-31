@@ -5,7 +5,7 @@ abstract class CommentsEvent extends Equatable {
 }
 
 class GetComments extends CommentsEvent {
-  final Post post;
+  final FeedItem post;
 
   const GetComments(this.post);
 

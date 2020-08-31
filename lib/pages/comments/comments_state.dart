@@ -17,7 +17,7 @@ class CommentsLoading extends CommentsState {
 }
 
 class CommentsLoaded extends CommentsState {
-  final List<Post> comments;
+  final List<Item> comments;
 
   const CommentsLoaded(this.comments);
 

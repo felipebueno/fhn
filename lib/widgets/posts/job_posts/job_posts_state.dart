@@ -17,7 +17,7 @@ class JobPostsLoading extends JobPostsState {
 }
 
 class JobPostsLoaded extends JobPostsState {
-  final List<Post> posts;
+  final List<FeedItem> posts;
 
   const JobPostsLoaded(this.posts);
 

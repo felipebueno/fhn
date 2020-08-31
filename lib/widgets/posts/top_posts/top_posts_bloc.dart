@@ -2,17 +2,17 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:fhn/data/models/post.dart';
 import 'package:fhn/data/post_repository.dart';
+import 'package:hnpwa_client/hnpwa_client.dart';
 
 part 'top_posts_event.dart';
 part 'top_posts_state.dart';
 
 class TopPostsBloc extends Bloc<TopPostsEvent, TopPostsState> {
-  final PostRepository postRepository;
-  List<Post> posts;
-  int from = 30;
-  int to = 60;
+  final IPostRepository postRepository;
+  List<FeedItem> posts;
+  int currentPage = 1;
+  int maxPage = 10;
 
   TopPostsBloc(TopPostsState initialState, this.postRepository)
       : super(initialState);
@@ -24,8 +24,7 @@ class TopPostsBloc extends Bloc<TopPostsEvent, TopPostsState> {
     if (event is GetTopPosts) {
       yield TopPostsLoading();
 
-      from = 30;
-      to = 60;
+      currentPage = 1;
 
       try {
         posts = await postRepository.fetchPosts(PostType.top);
@@ -37,19 +36,18 @@ class TopPostsBloc extends Bloc<TopPostsEvent, TopPostsState> {
         yield TopPostsError(e.toString());
       }
     } else if (event is GetMoreTopPosts) {
+      if (currentPage >= maxPage) return;
+
       yield TopPostsLoadingMore();
 
       try {
-        final List<Post> newPosts =
-            await postRepository.fetchMorePosts(PostType.top, from, to);
+        final List<FeedItem> newPosts =
+            await postRepository.fetchMorePosts(PostType.top, ++currentPage);
 
-        final List<Post> morePosts =
-            List<Post>.from(TopPostsLoaded(posts).posts)..addAll(newPosts);
+        final List<FeedItem> morePosts =
+            List<FeedItem>.from(TopPostsLoaded(posts).posts)..addAll(newPosts);
 
         posts = morePosts;
-
-        from += 30;
-        to += 30;
 
         yield TopPostsLoaded(posts);
       } on NetworkError {
